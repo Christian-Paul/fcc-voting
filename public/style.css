@@ -1,0 +1,18 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  font-family: "Lato"; }
+  html .background, body .background {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh; }
+    html .background .container, body .background .container {
+      display: flex;
+      align-items: center;
+      flex-direction: column; }
+      html .background .container .title, body .background .container .title {
+        font-size: 2em; }
+
+/*# sourceMappingURL=style.css.map */

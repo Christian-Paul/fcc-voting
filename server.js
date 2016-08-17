@@ -1,8 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+var express = require('express');
+var bodyParser = require('body-parser');
+var app = express();
+var path = require('path');
 var mongoose = require('mongoose');
+require('express-helpers')(app);
+app.set('view engine', 'ejs');
 
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://chris:password@ds161245.mlab.com:61245/fcc-voting');
 
@@ -21,7 +25,17 @@ app.listen(3000, function(req, res) {
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+	Poll.find({}, 'title', function(err, results) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.render('index.ejs', {polls: results});
+		}
+	})
+});
+
+app.get('/newpoll', function(req, res) {
+	res.sendFile(__dirname + '/newpoll.html');
 });
 
 app.post('/new-poll', function(req, res) {
@@ -47,4 +61,9 @@ app.post('/new-poll', function(req, res) {
 	});
 
 	res.redirect('/')
+});
+
+app.get('/polls/:tagId', function(req, res) {
+	var pollData = {id: req.params.tagId};
+	res.render('poll.ejs', {poll: pollData});
 });

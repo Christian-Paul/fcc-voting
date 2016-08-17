@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Voting App</title>
+		<link rel='stylesheet' type='text/css' href='./public/style.css'>
+		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<div class="container">
+			<div class='form-holder'>
+				<div class='title'>Create a New Poll</div>
+				<form action='/new-poll' method='POST'>
+					<input type="text" name='title' placeholder="Title">
+					<textarea name='options' placeholder="Options, one per line"></textarea>
+					<button type='submit'>Submit</button>
+				</form>
+			</div>
+		</div>
+
+	</body>
+</html>

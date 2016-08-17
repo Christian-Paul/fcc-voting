@@ -1,0 +1,20 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  font-family: "Lato"; }
+  html .container, body .container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh; }
+    html .container .form-holder, body .container .form-holder {
+      display: flex;
+      flex-direction: column; }
+      html .container .form-holder .title, body .container .form-holder .title {
+        font-size: 2em; }
+      html .container .form-holder form, body .container .form-holder form {
+        display: flex;
+        flex-direction: column; }
+
+/*# sourceMappingURL=newpoll.css.map */
