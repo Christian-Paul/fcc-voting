@@ -121,3 +121,13 @@ app.post('/polls/:tagId/add-option', function(req, res) {
 		}
 	});
 });
+
+app.get('/polls/:tagId/delete-poll', function(req, res) {
+	Poll.findByIdAndRemove(req.params.tagId, function(err, doc) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect('/');
+		}
+	})
+});

@@ -21,12 +21,15 @@
 			<div class='main-container'>
 				<div class="poll-holder">
 					<div class='poll-interface'>
+
 						<div class="poll-title">
 							<%= poll.title %>
 						</div>
+
 						<div class="poll-author">
 							by <%= poll.author %>
 						</div>
+
 						<form method='POST' action=<%= poll['_id'] + '/vote' %>>
 							<% for(var i = 0; i < poll.options.length; i++) { %>
 								<div>
@@ -36,6 +39,7 @@
 							<% } %>
 							<button type='submit'>Vote!</button>
 						</form>
+
 						<div class="new-option">
 							<div class='init-new-option'>
 								Add your own option...
@@ -46,6 +50,11 @@
 								<button type='button' class='cancel-new'>Cancel</button>								
 							</form>
 						</div>
+
+						<div class='delete-button'>
+							<a href=<%= poll['_id'] + '/delete-poll' %>>Delete Poll</a>
+						</div>
+
 					</div>
 					<div class="poll-results">
 						<div class="poll-chart">
