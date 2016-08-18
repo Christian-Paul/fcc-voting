@@ -11,9 +11,25 @@
 
 		<div class="background">
 			<div class='container'>
-				<div class="title">Here are some polls</div>
 				<div class="poll-holder">
-					<%= poll %>
+					<div class="poll-title">
+						<%= poll.title %>
+					</div>
+					<div class="poll-author">
+						by <%= poll.author %>
+					</div>
+					<form method='POST'>
+						<% for(prop in poll.options) { %>
+							<input type="radio" name='user-choice' value=<%= prop %>> <%= prop %> 
+						<% } %>
+						<button type='submit'>Submit</button>
+					</form>
+					<div class="poll-results">
+						Results:
+						<% for(prop in poll.options) { %>
+							<%= prop %>: <%= poll.options[prop] %>
+						<% } %>
+					</div>
 				</div>
 			</div>
 		</div>

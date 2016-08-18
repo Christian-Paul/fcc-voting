@@ -3,7 +3,9 @@ var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
+
 require('express-helpers')(app);
+
 app.set('view engine', 'ejs');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -13,7 +15,7 @@ mongoose.connect('mongodb://chris:password@ds161245.mlab.com:61245/fcc-voting');
 var pollSchema = new mongoose.Schema({
 	title: String,
 	author: String,
-	options: Array
+	options: Object
 });
 
 var Poll = mongoose.model('Poll', pollSchema)
@@ -40,18 +42,18 @@ app.get('/newpoll', function(req, res) {
 
 app.post('/new-poll', function(req, res) {
 	var formData = req.body;
-	var optionsArr = formData.options.split('\r\n').map(function(item) {
-		return {
-			option: item,
-			votes: 0
-		}
+	var optionsObj = {};
+
+	formData.options.split('\r\n').forEach(function(item) {
+		optionsObj[item] = 0;
 	});
+
 	var author = formData.author || 'Anonymous';
 
 	var newPoll = new Poll({
 		title: formData.title,
 		author: author,
-		options: optionsArr
+		options: optionsObj
 	});
 
 	newPoll.save(function(err) {
@@ -64,6 +66,28 @@ app.post('/new-poll', function(req, res) {
 });
 
 app.get('/polls/:tagId', function(req, res) {
-	var pollData = {id: req.params.tagId};
-	res.render('poll.ejs', {poll: pollData});
+
+	Poll.findOne( {'_id': req.params.tagId}, function(err, result) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.render('poll.ejs', {poll: result});
+		}
+	})
+});
+
+app.post('/polls/:tagId', function(req, res) {
+
+	var userChoice = req.body['user-choice'];
+	var updateObj = {};
+	updateObj['options.' + userChoice] = 1;
+
+	Poll.findOneAndUpdate( {'_id': req.params.tagId}, { $inc: updateObj }, function(err, doc) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect('/polls/' + req.params.tagId);
+		}
+	});
+
 });
