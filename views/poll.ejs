@@ -5,6 +5,7 @@
 		<title>Voting App</title>
 		<link rel='stylesheet' type='text/css' href='../public/poll.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 	</head>
 
 	<body>
@@ -26,22 +27,33 @@
 						<div class="poll-author">
 							by <%= poll.author %>
 						</div>
-						<form method='POST'>
-							<% for(prop in poll.options) { %>
+						<form method='POST' action=<%= poll['_id'] + '/vote' %>>
+							<% for(var i = 0; i < poll.options.length; i++) { %>
 								<div>
-									<input type="radio" name='user-choice' value=<%= prop %>> <%= prop %>
+									<input type="radio" name='user-choice' required value=<%= i %>>
+									<%= poll.options[i].name %>
 								</div>
 							<% } %>
-							<button type='submit'>Submit</button>
+							<button type='submit'>Vote!</button>
 						</form>
+						<div class="new-option">
+							<div class='init-new-option'>
+								Add your own option...
+							</div>
+							<form method='POST' class='new-option-form' action=<%= poll['_id'] + '/add-option' %> >
+								<input type="text" name="new-option" placeholder="New Option" required>
+								<button type='submit'>Create</button>
+								<button type='button' class='cancel-new'>Cancel</button>								
+							</form>
+						</div>
 					</div>
 					<div class="poll-results">
 						<div class="poll-chart">
 							<canvas id='myChart' width='400' height='400'></canvas>
 						</div>
 						<div class='text-results'>
-							<% for(prop in poll.options) { %>
-								<%= prop %>: <%= poll.options[prop] %>
+							<% for(var i = 0; i < poll.options.length; i++) { %>
+								<%= poll.options[i].name %>: <%= poll.options[i].votes %>
 							<% } %>
 						</div>
 					</div>
@@ -65,9 +77,9 @@
 			var categoryVotes = [];
 			var categoryColors = [];
 
-			for(prop in poll.options) {
-				categoryNames.push(prop);
-				categoryVotes.push(poll.options[prop]);
+			for(var i = 0; i < poll.options.length; i++) {
+				categoryNames.push(poll.options[i].name);
+				categoryVotes.push(poll.options[i].votes);
 				categoryColors.push(getRandomColor());
 			};
 
@@ -83,6 +95,7 @@
 			    }
 			});
 		</script>
+		<script type="text/javascript" src='../public/poll.js'></script>
 
 	</body>
 </html>

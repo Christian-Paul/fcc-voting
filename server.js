@@ -15,7 +15,7 @@ mongoose.connect('mongodb://chris:password@ds161245.mlab.com:61245/fcc-voting');
 var pollSchema = new mongoose.Schema({
 	title: String,
 	author: String,
-	options: Object
+	options: Array
 });
 
 var Poll = mongoose.model('Poll', pollSchema)
@@ -42,27 +42,37 @@ app.get('/newpoll', function(req, res) {
 
 app.post('/new-poll', function(req, res) {
 	var formData = req.body;
-	var optionsObj = {};
+	var optionsArr = [];
 
-	formData.options.split('\r\n').forEach(function(item) {
-		optionsObj[item] = 0;
-	});
+	// validates that the request object has a title and options property and they contain content
+	if(
+		formData.hasOwnProperty('title') && formData.title &&
+		formData.hasOwnProperty('options') && formData.options 
+		) {
 
-	var author = formData.author || 'Anonymous';
+		formData.options.split('\r\n').forEach(function(item) {
+			optionsArr.push({
+				name: item,
+				votes: 0
+			});
+		});
 
-	var newPoll = new Poll({
-		title: formData.title,
-		author: author,
-		options: optionsObj
-	});
+		var author = formData.author || 'Anonymous';
 
-	newPoll.save(function(err) {
-		if(err) {
-			console.log(err);
-		}
-	});
+		var newPoll = new Poll({
+			title: formData.title,
+			author: author,
+			options: optionsArr
+		});
 
-	res.redirect('/')
+		newPoll.save(function(err) {
+			if(err) {
+				console.log(err);
+			}
+		});
+
+		res.redirect('/')	
+	}
 });
 
 app.get('/polls/:tagId', function(req, res) {
@@ -76,11 +86,14 @@ app.get('/polls/:tagId', function(req, res) {
 	})
 });
 
-app.post('/polls/:tagId', function(req, res) {
+app.post('/polls/:tagId/vote', function(req, res) {
 
 	var userChoice = req.body['user-choice'];
+	var locationString = 'options.' + userChoice + '.votes';
+
 	var updateObj = {};
-	updateObj['options.' + userChoice] = 1;
+	updateObj[locationString] = 1;
+
 
 	Poll.findOneAndUpdate( {'_id': req.params.tagId}, { $inc: updateObj }, function(err, doc) {
 		if(err) {
@@ -90,4 +103,21 @@ app.post('/polls/:tagId', function(req, res) {
 		}
 	});
 
+});
+
+
+app.post('/polls/:tagId/add-option', function(req, res) {
+	var newOption = {
+		votes: 0,
+		name: req.body['new-option']
+	};
+
+
+	Poll.findOneAndUpdate( {'_id': req.params.tagId}, { $push: { options: newOption } }, function(err, doc) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.redirect('/polls/' + req.params.tagId);
+		}
+	});
 });

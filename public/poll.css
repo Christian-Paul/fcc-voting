@@ -47,6 +47,11 @@ html, body {
             margin-top: 0.25em; }
             html .background .main-container .poll-holder .poll-interface form button, body .background .main-container .poll-holder .poll-interface form button {
               margin-top: 0.5em; }
+          html .background .main-container .poll-holder .poll-interface .new-option .init-new-option, body .background .main-container .poll-holder .poll-interface .new-option .init-new-option {
+            color: darkred;
+            cursor: pointer; }
+          html .background .main-container .poll-holder .poll-interface .new-option .new-option-form, body .background .main-container .poll-holder .poll-interface .new-option .new-option-form {
+            display: none; }
         html .background .main-container .poll-holder .poll-results, body .background .main-container .poll-holder .poll-results {
           display: flex;
           flex-direction: column;
