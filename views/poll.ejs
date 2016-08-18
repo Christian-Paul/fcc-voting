@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Voting App</title>
-		<link rel='stylesheet' type='text/css' href='./public/style.css'>
+		<link rel='stylesheet' type='text/css' href='../public/style.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</head>
 
@@ -30,9 +30,47 @@
 							<%= prop %>: <%= poll.options[prop] %>
 						<% } %>
 					</div>
+					<div class="poll-chart">
+						<canvas id='myChart' width='400' height='400'></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<script src='../public/Chart.min.js'></script>
+		<script>
+			var poll = <%- JSON.stringify(poll) %>;
+			function getRandomColor() {
+			    var letters = '0123456789ABCDEF'.split('');
+			    var color = '#';
+			    for (var i = 0; i < 6; i++ ) {
+			        color += letters[Math.floor(Math.random() * 16)];
+			    }
+			    return color;
+			}
+
+			var categoryNames = [];
+			var categoryVotes = [];
+			var categoryColors = [];
+
+			for(prop in poll.options) {
+				categoryNames.push(prop);
+				categoryVotes.push(poll.options[prop]);
+				categoryColors.push(getRandomColor())
+			};
+
+			var ctx = document.getElementById('myChart');
+			var myDoughnutChart = new Chart(ctx, {
+			    type: 'doughnut',
+			    data: {
+			    	labels: categoryNames,
+			    	datasets: [{
+			    		data: categoryVotes,
+			    		backgroundColor: categoryColors
+			    	}]
+			    }
+			});
+		</script>
 
 	</body>
 </html>
