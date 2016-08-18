@@ -3,35 +3,47 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Voting App</title>
-		<link rel='stylesheet' type='text/css' href='../public/style.css'>
+		<link rel='stylesheet' type='text/css' href='../public/poll.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</head>
 
 	<body>
 
 		<div class="background">
-			<div class='container'>
+			<div class="navbar-container">
+				<div class="navbar">
+					<div class='destination'><a href='../'>All Polls</a></div>
+					<div class='destination'><a href='../newpoll'>New Poll</a></div>
+				</div>
+			</div>
+
+			<div class='main-container'>
 				<div class="poll-holder">
-					<div class="poll-title">
-						<%= poll.title %>
+					<div class='poll-interface'>
+						<div class="poll-title">
+							<%= poll.title %>
+						</div>
+						<div class="poll-author">
+							by <%= poll.author %>
+						</div>
+						<form method='POST'>
+							<% for(prop in poll.options) { %>
+								<div>
+									<input type="radio" name='user-choice' value=<%= prop %>> <%= prop %>
+								</div>
+							<% } %>
+							<button type='submit'>Submit</button>
+						</form>
 					</div>
-					<div class="poll-author">
-						by <%= poll.author %>
-					</div>
-					<form method='POST'>
-						<% for(prop in poll.options) { %>
-							<input type="radio" name='user-choice' value=<%= prop %>> <%= prop %> 
-						<% } %>
-						<button type='submit'>Submit</button>
-					</form>
 					<div class="poll-results">
-						Results:
-						<% for(prop in poll.options) { %>
-							<%= prop %>: <%= poll.options[prop] %>
-						<% } %>
-					</div>
-					<div class="poll-chart">
-						<canvas id='myChart' width='400' height='400'></canvas>
+						<div class="poll-chart">
+							<canvas id='myChart' width='400' height='400'></canvas>
+						</div>
+						<div class='text-results'>
+							<% for(prop in poll.options) { %>
+								<%= prop %>: <%= poll.options[prop] %>
+							<% } %>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -56,7 +68,7 @@
 			for(prop in poll.options) {
 				categoryNames.push(prop);
 				categoryVotes.push(poll.options[prop]);
-				categoryColors.push(getRandomColor())
+				categoryColors.push(getRandomColor());
 			};
 
 			var ctx = document.getElementById('myChart');

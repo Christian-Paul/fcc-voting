@@ -34,7 +34,24 @@ html, body {
       margin-top: 4em;
       width: 90vw;
       max-width: 800px; }
-      html .background .main-container .title, body .background .main-container .title {
-        font-size: 2em; }
+      html .background .main-container .poll-holder, body .background .main-container .poll-holder {
+        display: flex;
+        justify-content: space-between;
+        width: 100%; }
+        html .background .main-container .poll-holder .poll-interface, body .background .main-container .poll-holder .poll-interface {
+          display: flex;
+          flex-direction: column; }
+          html .background .main-container .poll-holder .poll-interface .poll-title, body .background .main-container .poll-holder .poll-interface .poll-title {
+            font-size: 2em; }
+          html .background .main-container .poll-holder .poll-interface form, body .background .main-container .poll-holder .poll-interface form {
+            margin-top: 0.25em; }
+            html .background .main-container .poll-holder .poll-interface form button, body .background .main-container .poll-holder .poll-interface form button {
+              margin-top: 0.5em; }
+        html .background .main-container .poll-holder .poll-results, body .background .main-container .poll-holder .poll-results {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+          html .background .main-container .poll-holder .poll-results .text-results, body .background .main-container .poll-holder .poll-results .text-results {
+            margin-top: 0.5em; }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=poll.css.map */

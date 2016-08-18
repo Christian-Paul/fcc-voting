@@ -10,7 +10,14 @@
 	<body>
 
 		<div class="background">
-			<div class='container'>
+			<div class="navbar-container">
+				<div class="navbar">
+					<div class='destination'><a href='../'>All Polls</a></div>
+					<div class='destination'><a href='../newpoll'>New Poll</a></div>
+				</div>
+			</div>
+
+			<div class='main-container'>
 				<div class="title">Here are some polls</div>
 				<div class="polls-holder">
 					<% for(var i = 0; i < polls.length; i++) { %>

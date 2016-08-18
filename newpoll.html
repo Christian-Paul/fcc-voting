@@ -8,16 +8,26 @@
 	</head>
 
 	<body>
+		<div class='background'>
 
-		<div class="container">
-			<div class='form-holder'>
-				<div class='title'>Create a New Poll</div>
-				<form action='/new-poll' method='POST'>
-					<input type="text" name='title' placeholder="Title">
-					<textarea name='options' placeholder="Options, one per line"></textarea>
-					<button type='submit'>Submit</button>
-				</form>
+			<div class="navbar-container">
+				<div class="navbar">
+					<div class='destination'><a href='../'>All Polls</a></div>
+					<div class='destination'><a href='../newpoll'>New Poll</a></div>
+				</div>
 			</div>
+
+			<div class="main-container">
+				<div class='form-holder'>
+					<div class='title'>Create a New Poll</div>
+					<form action='/new-poll' method='POST'>
+						<input type="text" name='title' placeholder="Title">
+						<textarea name='options' placeholder="Options, one per line"></textarea>
+						<button type='submit'>Submit</button>
+					</form>
+				</div>
+			</div>
+
 		</div>
 
 	</body>
