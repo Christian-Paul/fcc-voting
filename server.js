@@ -3,6 +3,7 @@ var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
+var config = require('./config.js');
 
 require('express-helpers')(app);
 
@@ -10,7 +11,7 @@ app.set('view engine', 'ejs');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://chris:password@ds161245.mlab.com:61245/fcc-voting');
+mongoose.connect('mongodb://' + config.mongooseUsername + ':' + config.mongoosePassword + '@ds161245.mlab.com:61245/fcc-voting');
 
 var pollSchema = new mongoose.Schema({
 	title: String,
