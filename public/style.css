@@ -16,6 +16,11 @@ html, body {
         width: 95vw;
         display: flex;
         justify-content: flex-end; }
+        html .background .navbar-container .navbar .sign-in, body .background .navbar-container .navbar .sign-in {
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
         html .background .navbar-container .navbar .destination:hover, body .background .navbar-container .navbar .destination:hover {
           background-color: #333; }
         html .background .navbar-container .navbar .destination, body .background .navbar-container .navbar .destination {

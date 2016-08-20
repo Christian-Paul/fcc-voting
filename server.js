@@ -4,8 +4,15 @@ var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
 var config = require('./config.js');
+var Twitter = require('node-twitter-api')
 
 require('express-helpers')(app);
+
+var twitter = new Twitter({
+	consumerKey: config.consumerKey,
+	consumerSecret: config.consumerSecret,
+	callback: config.callbackUrl
+});
 
 app.set('view engine', 'ejs');
 
@@ -35,6 +42,36 @@ app.get('/', function(req, res) {
 			res.render('index.ejs', {polls: results});
 		}
 	})
+});
+
+var _requestSecret;
+
+app.get('/request-token', function(req, res) {
+	twitter.getRequestToken(function(err, requestToken, requestSecret) {
+		if(err) {
+			res.status(500).send(err);
+		} else {
+			_requestSecret = requestSecret;
+			res.redirect('https://api.twitter.com/oauth/authenticate?oauth_token=' + requestToken);
+		}
+	});
+});
+
+app.get('/login/twitter/callback', function(req, res) {
+	var requestToken = req.query.oauth_token;
+	var verifier = req.query.oauth_verifier;
+
+    twitter.getAccessToken(requestToken, _requestSecret, verifier, function(err, accessToken, accessSecret) {
+        if (err)
+            res.status(500).send(err);
+        else
+            twitter.verifyCredentials(accessToken, accessSecret, function(err, user) {
+                if (err)
+                    res.status(500).send(err);
+                else
+                    res.send(user);
+            });
+    });
 });
 
 app.get('/newpoll', function(req, res) {
