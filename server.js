@@ -4,9 +4,18 @@ var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
 var config = require('./config.js');
-var Twitter = require('node-twitter-api')
-
+var Twitter = require('node-twitter-api');
+var session = require('express-session');
+var FileStore = require('session-file-store')(session);
 require('express-helpers')(app);
+
+app.use(session({
+	name: 'server-session-cookie-id',
+	secret: 'my express secret',
+	saveUninitialized: true,
+	resave: true,
+	store: new FileStore()
+}));
 
 var twitter = new Twitter({
 	consumerKey: config.consumerKey,
