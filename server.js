@@ -17,9 +17,9 @@ var sessionOptions = {
 	resave: false,
 	store: new FileStore(),
 	name: 'my.connect.sid'
-}
+};
 
-
+// middleware
 app.use(session(sessionOptions));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,6 +31,8 @@ var twitter = new Twitter({
 });
 
 
+
+// database initialization
 mongoose.connect('mongodb://' + config.mongooseUsername + ':' + config.mongoosePassword + '@ds161245.mlab.com:61245/fcc-voting');
 
 var pollSchema = new mongoose.Schema({
@@ -39,15 +41,20 @@ var pollSchema = new mongoose.Schema({
 		name: String,
 		twitterId: Number
 	},
-	options: [{ name: String, votes: { type: Number, default: 0 } }]
+	options: [{ name: String, votes: { type: Number, default: 0 } }],
+	voters: Array
 });
 
 var Poll = mongoose.model('Poll', pollSchema)
 
+
+
+// begin app
 app.listen(3000, function(req, res) {
 	console.log('listening on 3000');
 })
 
+// index page: list polls currently in database
 app.get('/', function(req, res) {
 	Poll.find({}, 'title', function(err, results) {
 		if(err) {
@@ -60,6 +67,7 @@ app.get('/', function(req, res) {
 
 var _requestSecret;
 
+// when a user clicks 'sign in' get a request token from twitter and redirect user to sign in with token
 app.get('/request-token', function(req, res) {
 	twitter.getRequestToken(function(err, requestToken, requestSecret) {
 		if(err) {
@@ -71,6 +79,7 @@ app.get('/request-token', function(req, res) {
 	});
 });
 
+// when user is sent back from twitter, use results to obtain credentials
 app.get('/login/twitter/callback', function(req, res) {
 	var requestToken = req.query.oauth_token;
 	var verifier = req.query.oauth_verifier;
@@ -96,6 +105,7 @@ app.get('/login/twitter/callback', function(req, res) {
     });
 });
 
+// sign out: destroy session and clear cookies
 app.get('/sign-out', function(req, res) {
 	req.session.destroy(function(err) {
 		if(err) {
@@ -107,10 +117,13 @@ app.get('/sign-out', function(req, res) {
 	})
 });
 
+// view poll creation page
 app.get('/newpoll', function(req, res) {
 	res.render('newpoll.ejs', {userInfo: req.session.userInfo});
 });
 
+
+// create a new poll
 app.post('/new-poll', function(req, res) {
 	var formData = req.body;
 	var optionsArr = [];
@@ -141,13 +154,12 @@ app.post('/new-poll', function(req, res) {
 				console.log(err);
 			}
 		});
-
 		res.redirect('/')	
 	}
 });
 
+// look up a poll by database id
 app.get('/polls/:tagId', function(req, res) {
-
 	Poll.findOne( {'_id': req.params.tagId}, function(err, result) {
 		if(err) {
 			console.log(err);
@@ -161,22 +173,51 @@ app.get('/polls/:tagId', function(req, res) {
 // process a vote
 app.post('/polls/:tagId/vote', function(req, res) {
 
+	// the number corresponding to the user's vote
 	var userChoice = req.body['user-choice'];
-	var locationString = 'options.' + userChoice + '.votes';
 
+	// building a property name to pass to the update field
+	// object will look like $inc: { options.2.votes: 1 }
+	// to denote the option at index 2 is being incremented by 1
+	var locationString = 'options.' + userChoice + '.votes';
 	var updateObj = {};
 	updateObj[locationString] = 1;
 
 
-	Poll.findOneAndUpdate( {'_id': req.params.tagId}, { $inc: updateObj }, function(err, doc) {
+	// find poll and check if the current user has already voted
+	Poll.findOne( {'_id': req.params.tagId}, function(err, doc) {
 		if(err) {
 			console.log(err);
 		} else {
-			res.redirect('/polls/' + req.params.tagId);
+			// check to see if voters array contains the user's id already
+			// if their id is present, userAlreadyVoted return true
+			var userId = req.session.userInfo.id;
+			var userAlreadyVoted = (doc.voters.indexOf(userId) !== -1);
+
+			if(userAlreadyVoted) {
+				res.send({
+					result: 'fail',
+					message: 'This account or IP address has already voted'
+				});
+			} else {
+				// new set to true so doc object will return updated value
+				Poll.findOneAndUpdate( {'_id': req.params.tagId}, { $inc: updateObj, $push: { voters: userId } }, { new: true }, function(err, doc) {
+					if(err) {
+						console.log(err);
+					} else {
+						console.log(doc.options);
+						res.send({
+							result: 'success',
+							message: 'Vote casted for: ' + doc.options[userChoice].name,
+							pollResults: doc.options
+						});
+					}
+				});
+			}
 		}
 	});
-
 });
+
 
 // add a new option to a poll
 app.post('/polls/:tagId/add-option', function(req, res) {
