@@ -140,27 +140,38 @@ app.get('/newpoll', function(req, res) {
 // create a new poll
 app.post('/new-poll', function(req, res) {
 	var formData = req.body;
-	var optionsArr = [];
 
-	// validates that the request object has a title and options property and they contain content
+	// validates that the request object has a title and options properties and they contain content
 	if(
 		formData.hasOwnProperty('title') && formData.title &&
-		formData.hasOwnProperty('options') && formData.options 
+		formData.hasOwnProperty('option-1') && formData['option-1'] &&
+		formData.hasOwnProperty('option-2') && formData['option-2']
 		) {
 
-		formData.options.split('\r\n').forEach(function(item) {
-			optionsArr.push({
+		// pushes formData object's values to formDataArr
+		var formDataArr = [];
+		for(item in formData) {
+			formDataArr.push(formData[item]);
+		}
+
+		// title is first item in array, formDataArr now contains only options
+		var title = formDataArr.shift();
+
+		// creates an array of objects whose name property have the value of the formData options
+		var optionsArrOfObjects = [];
+		formDataArr.forEach(function(item) {
+			optionsArrOfObjects.push({
 				name: item
 			});
 		});
 
 		var newPoll = new Poll({
-			title: formData.title,
+			title: title,
 			author: {
 				name: req.session.userInfo['screen_name'],
 				twitterId: req.session.userInfo.id
 			},
-			options: optionsArr
+			options: optionsArrOfObjects
 		});
 
 		newPoll.save(function(err) {

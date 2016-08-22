@@ -1,3 +1,77 @@
+footer {
+  display: flex;
+  width: 100vw;
+  background-color: #111;
+  justify-content: center;
+  align-items: center;
+  height: 3em; }
+  footer .info-container {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between; }
+    footer .info-container .source a, footer .info-container .signature a {
+      text-decoration: none;
+      color: #999; }
+
+.navbar-container {
+  width: 100vw;
+  background-color: #111;
+  color: #fff;
+  position: fixed;
+  top: 0; }
+  .navbar-container .navbar {
+    width: 95vw;
+    display: flex;
+    justify-content: flex-end; }
+    .navbar-container .navbar .destination:hover {
+      background-color: #222; }
+    .navbar-container .navbar .destination:first-child {
+      border-left: 1px #444 solid; }
+    .navbar-container .navbar .destination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-right: 1px #444 solid; }
+      .navbar-container .navbar .destination .user-interface {
+        cursor: pointer;
+        display: flex;
+        height: 4em; }
+        .navbar-container .navbar .destination .user-interface .user-info {
+          display: flex;
+          align-items: center;
+          margin-left: 0.5em;
+          margin-right: 0.5em; }
+          .navbar-container .navbar .destination .user-interface .user-info .user-image {
+            border-radius: 0.1em; }
+          .navbar-container .navbar .destination .user-interface .user-info .username {
+            margin-left: 0.5em; }
+        .navbar-container .navbar .destination .user-interface .dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0%;
+          width: 100%; }
+          .navbar-container .navbar .destination .user-interface .dropdown a {
+            display: none; }
+      .navbar-container .navbar .destination .user-interface:hover .dropdown {
+        display: flex;
+        flex-direction: column; }
+        .navbar-container .navbar .destination .user-interface:hover .dropdown a {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          background-color: #333; }
+        .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover {
+          background-color: #444; }
+      .navbar-container .navbar .destination a {
+        text-decoration: none;
+        color: #fff;
+        height: 4em;
+        width: 6em;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+
 html, body {
   margin: 0;
   padding: 0;

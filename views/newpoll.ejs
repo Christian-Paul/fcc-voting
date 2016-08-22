@@ -3,28 +3,38 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Voting App</title>
-		<link rel='stylesheet' type='text/css' href='./public/styles/style.css'>
-		<link rel='stylesheet' type='text/css' href='../public/styles/navbar.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<link rel='stylesheet' type='text/css' href='./public/styles/newpoll.css'>
 	</head>
 
 	<body>
-
 		<div class='background'>
 			<div class="navbar-container">
 				<% include ./partials/navbar %>
 			</div>
 
 			<div class="main-container">
-				<div class='form-holder'>
-					<div class='title'>Create a New Poll</div>
-					<form action='/new-poll' method='POST'>
-						<input type="text" name='title' placeholder="Title" required>
-						<textarea name='options' placeholder="Options, one per line" required></textarea>
-						<button type='submit'>Submit</button>
-					</form>
+				<div class='form-outline'>
+					<div class='form-holder'>
+						<div class='title'>Create a New Poll</div>
+						<form action='/new-poll' method='POST'>
+							<input type="text" name='title' placeholder="Your Poll Title" id='poll-title-input' required>
+							<div class='options-holder'>
+								<input type='text' name='option-1' placeholder='Enter options here...' required>
+								<input type='text' name='option-2' placeholder='Enter options here...' required>
+								<input type='text' name='option-3' placeholder='Enter options here...'>
+							</div>
+							<button type='submit'>Submit</button>
+						</form>
+					</div>
 				</div>
 			</div>
+
+			<footer>
+				<% include ./partials/footer %>
+			</footer>
 		</div>
+		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+		<script src='../public/js/newpoll.js'></script>
 	</body>
 </html>

@@ -1,49 +1,75 @@
+@import 'footer', 'navbar'
+
 html, body
 	margin: 0
 	padding: 0
 	background-color: #eee
 	font-family: 'Lato'
+	height: 100%
 
 	.background
 		display: flex
 		flex-direction: column
+		min-height: 100%
 
 		.main-container
 			display: flex
 			justify-content: center
 			width: 100vw
-			margin-top: 3em
+			flex: 1
+			margin-top: 8em
 
-			.form-holder
+			.form-outline
+				height: 28em
+				max-height: 450px
+				width: 36vw
+				max-width: 575px
+				background-color: #fff
 				display: flex
-				flex-direction: column
-				width: 30vw
-				max-width: 400px
+				justify-content: center
+				align-items: center
 
-				.title
-					font-size: 2em
-					text-align: center
-
-				form
-					margin-top: 0.5em
+				.form-holder
 					display: flex
 					flex-direction: column
+					width: 80%
+					height: 80%
 
-					input
-						height: 1.5em
-						padding-left: 0.25em
+					.title
+						font-size: 3em
+						text-align: center
 
-					textarea
-						margin-top: 0.5em
-						padding-left: 0.25em
-						height: 6em
+					form
+						margin-top: 1em
+						display: flex
+						flex-direction: column
 
-					button
-						margin-top: 0.5em
-						height: 3em
-						width: 30%
-						margin-left: 35%
-						background-color: darkred
-						color: #fff
-						border: none
-						cursor: pointer
+						#poll-title-input
+							font-size: 1.1em
+
+						input
+							height: 2.5em
+							padding-left: 0.25em
+
+						.options-holder
+							display: flex
+							flex-direction: column
+							margin-top: 1.5em
+
+							input + input
+								margin-top: 1em
+
+
+						button
+							margin-top: 1.5em
+							height: 3em
+							width: 30%
+							margin-left: 35%
+							background-color: brown
+							color: #fff
+							border: none
+							cursor: pointer
+
+		.test
+			height: 24em
+			background-color: red

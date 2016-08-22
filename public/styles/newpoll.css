@@ -1,43 +1,136 @@
+footer {
+  display: flex;
+  width: 100vw;
+  background-color: #111;
+  justify-content: center;
+  align-items: center;
+  height: 3em; }
+  footer .info-container {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between; }
+    footer .info-container .source a, footer .info-container .signature a {
+      text-decoration: none;
+      color: #999; }
+
+.navbar-container {
+  width: 100vw;
+  background-color: #111;
+  color: #fff;
+  position: fixed;
+  top: 0; }
+  .navbar-container .navbar {
+    width: 95vw;
+    display: flex;
+    justify-content: flex-end; }
+    .navbar-container .navbar .destination:hover {
+      background-color: #222; }
+    .navbar-container .navbar .destination:first-child {
+      border-left: 1px #444 solid; }
+    .navbar-container .navbar .destination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      border-right: 1px #444 solid; }
+      .navbar-container .navbar .destination .user-interface {
+        cursor: pointer;
+        display: flex;
+        height: 4em; }
+        .navbar-container .navbar .destination .user-interface .user-info {
+          display: flex;
+          align-items: center;
+          margin-left: 0.5em;
+          margin-right: 0.5em; }
+          .navbar-container .navbar .destination .user-interface .user-info .user-image {
+            border-radius: 0.1em; }
+          .navbar-container .navbar .destination .user-interface .user-info .username {
+            margin-left: 0.5em; }
+        .navbar-container .navbar .destination .user-interface .dropdown {
+          position: absolute;
+          top: 100%;
+          left: 0%;
+          width: 100%; }
+          .navbar-container .navbar .destination .user-interface .dropdown a {
+            display: none; }
+      .navbar-container .navbar .destination .user-interface:hover .dropdown {
+        display: flex;
+        flex-direction: column; }
+        .navbar-container .navbar .destination .user-interface:hover .dropdown a {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          background-color: #333; }
+        .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover {
+          background-color: #444; }
+      .navbar-container .navbar .destination a {
+        text-decoration: none;
+        color: #fff;
+        height: 4em;
+        width: 6em;
+        display: flex;
+        align-items: center;
+        justify-content: center; }
+
 html, body {
   margin: 0;
   padding: 0;
   background-color: #eee;
-  font-family: "Lato"; }
+  font-family: "Lato";
+  height: 100%; }
   html .background, body .background {
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    min-height: 100%; }
     html .background .main-container, body .background .main-container {
       display: flex;
       justify-content: center;
       width: 100vw;
-      margin-top: 3em; }
-      html .background .main-container .form-holder, body .background .main-container .form-holder {
+      flex: 1;
+      margin-top: 8em; }
+      html .background .main-container .form-outline, body .background .main-container .form-outline {
+        height: 28em;
+        max-height: 450px;
+        width: 36vw;
+        max-width: 575px;
+        background-color: #fff;
         display: flex;
-        flex-direction: column;
-        width: 30vw;
-        max-width: 400px; }
-        html .background .main-container .form-holder .title, body .background .main-container .form-holder .title {
-          font-size: 2em;
-          text-align: center; }
-        html .background .main-container .form-holder form, body .background .main-container .form-holder form {
-          margin-top: 0.5em;
+        justify-content: center;
+        align-items: center; }
+        html .background .main-container .form-outline .form-holder, body .background .main-container .form-outline .form-holder {
           display: flex;
-          flex-direction: column; }
-          html .background .main-container .form-holder form input, body .background .main-container .form-holder form input {
-            height: 1.5em;
-            padding-left: 0.25em; }
-          html .background .main-container .form-holder form textarea, body .background .main-container .form-holder form textarea {
-            margin-top: 0.5em;
-            padding-left: 0.25em;
-            height: 6em; }
-          html .background .main-container .form-holder form button, body .background .main-container .form-holder form button {
-            margin-top: 0.5em;
-            height: 3em;
-            width: 30%;
-            margin-left: 35%;
-            background-color: darkred;
-            color: #fff;
-            border: none;
-            cursor: pointer; }
+          flex-direction: column;
+          width: 80%;
+          height: 80%; }
+          html .background .main-container .form-outline .form-holder .title, body .background .main-container .form-outline .form-holder .title {
+            font-size: 3em;
+            text-align: center; }
+          html .background .main-container .form-outline .form-holder form, body .background .main-container .form-outline .form-holder form {
+            margin-top: 1em;
+            display: flex;
+            flex-direction: column; }
+            html .background .main-container .form-outline .form-holder form #poll-title-input, body .background .main-container .form-outline .form-holder form #poll-title-input {
+              font-size: 1.1em; }
+            html .background .main-container .form-outline .form-holder form input, body .background .main-container .form-outline .form-holder form input {
+              height: 2.5em;
+              padding-left: 0.25em; }
+            html .background .main-container .form-outline .form-holder form .options-holder, body .background .main-container .form-outline .form-holder form .options-holder {
+              display: flex;
+              flex-direction: column;
+              margin-top: 1.5em; }
+              html .background .main-container .form-outline .form-holder form .options-holder input + input, body .background .main-container .form-outline .form-holder form .options-holder input + input {
+                margin-top: 1em; }
+            html .background .main-container .form-outline .form-holder form button, body .background .main-container .form-outline .form-holder form button {
+              margin-top: 1.5em;
+              height: 3em;
+              width: 30%;
+              margin-left: 35%;
+              background-color: brown;
+              color: #fff;
+              border: none;
+              cursor: pointer; }
+    html .background .test, body .background .test {
+      height: 24em;
+      background-color: red; }
 
 /*# sourceMappingURL=newpoll.css.map */
