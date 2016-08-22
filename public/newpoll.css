@@ -8,22 +8,60 @@ html, body {
     flex-direction: column; }
     html .background .navbar-container, body .background .navbar-container {
       width: 100vw;
-      background-color: #222; }
+      background-color: #111;
+      color: #fff; }
       html .background .navbar-container .navbar, body .background .navbar-container .navbar {
         width: 95vw;
         display: flex;
         justify-content: flex-end; }
         html .background .navbar-container .navbar .destination:hover, body .background .navbar-container .navbar .destination:hover {
-          background-color: #333; }
+          background-color: #222; }
+        html .background .navbar-container .navbar .destination:first-child, body .background .navbar-container .navbar .destination:first-child {
+          border-left: 1px #444 solid; }
         html .background .navbar-container .navbar .destination, body .background .navbar-container .navbar .destination {
           display: flex;
           justify-content: center;
           align-items: center;
-          background-color: #444; }
+          position: relative;
+          border-right: 1px #444 solid; }
+          html .background .navbar-container .navbar .destination .user-interface, body .background .navbar-container .navbar .destination .user-interface {
+            cursor: pointer;
+            display: flex;
+            height: 4em; }
+            html .background .navbar-container .navbar .destination .user-interface .user-info, body .background .navbar-container .navbar .destination .user-interface .user-info {
+              display: flex;
+              align-items: center;
+              margin-left: 0.5em;
+              margin-right: 0.5em; }
+              html .background .navbar-container .navbar .destination .user-interface .user-info .user-image, body .background .navbar-container .navbar .destination .user-interface .user-info .user-image {
+                border-radius: 0.1em; }
+              html .background .navbar-container .navbar .destination .user-interface .user-info .username, body .background .navbar-container .navbar .destination .user-interface .user-info .username {
+                margin-left: 0.5em; }
+            html .background .navbar-container .navbar .destination .user-interface .dropdown, body .background .navbar-container .navbar .destination .user-interface .dropdown {
+              position: absolute;
+              top: 100%;
+              left: 0%;
+              width: 100%; }
+              html .background .navbar-container .navbar .destination .user-interface .dropdown a, body .background .navbar-container .navbar .destination .user-interface .dropdown a {
+                display: none; }
+          html .background .navbar-container .navbar .destination .user-interface:hover .dropdown, body .background .navbar-container .navbar .destination .user-interface:hover .dropdown {
+            display: flex;
+            flex-direction: column; }
+            html .background .navbar-container .navbar .destination .user-interface:hover .dropdown a, body .background .navbar-container .navbar .destination .user-interface:hover .dropdown a {
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              background-color: #333; }
+            html .background .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover, body .background .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover {
+              background-color: #444; }
           html .background .navbar-container .navbar .destination a, body .background .navbar-container .navbar .destination a {
-            padding: 1em 1em;
             text-decoration: none;
-            color: #fff; }
+            color: #fff;
+            height: 4em;
+            width: 6em;
+            display: flex;
+            align-items: center;
+            justify-content: center; }
     html .background .main-container, body .background .main-container {
       display: flex;
       justify-content: center;

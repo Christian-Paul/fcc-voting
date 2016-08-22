@@ -10,7 +10,8 @@ html, body
 
 		.navbar-container
 			width: 100vw
-			background-color: #222
+			background-color: #111
+			color: #fff
 
 			.navbar
 				width: 95vw
@@ -18,18 +19,66 @@ html, body
 				justify-content: flex-end
 
 				.destination:hover
-					background-color: #333
+					background-color: #222
+
+				.destination:first-child
+					border-left: 1px #444 solid
 
 				.destination
 					display: flex
 					justify-content: center
 					align-items: center
-					background-color: #444
+					position: relative
+					border-right: 1px #444 solid
+
+					.user-interface
+						cursor: pointer
+						display: flex
+						height: 4em
+
+						.user-info
+							display: flex
+							align-items: center
+							margin-left: 0.5em
+							margin-right: 0.5em
+
+							.user-image
+								border-radius: 0.1em
+
+							.username
+								margin-left: 0.5em
+
+						.dropdown
+							position: absolute
+							top: 100%
+							left: 0%
+							width: 100%
+
+							a
+								display: none
+
+					.user-interface:hover 
+						.dropdown
+							display: flex
+							flex-direction: column
+
+							a
+								width: 100%
+								display: flex
+								justify-content: center
+								background-color: #333
+
+							a:hover
+								background-color: #444
 
 					a
-						padding: 1em 1em
 						text-decoration: none
 						color: #fff
+						height: 4em
+						width: 6em
+						display: flex
+						align-items: center
+						justify-content: center
 
 		.main-container
 			display: flex

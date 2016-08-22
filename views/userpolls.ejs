@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Voting App</title>
-		<link rel='stylesheet' type='text/css' href='./public/style.css'>
+		<link rel='stylesheet' type='text/css' href='../public/style.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</head>
 
@@ -34,7 +34,7 @@
 			</div>
 
 			<div class='main-container'>
-				<div class="title">Here are some polls</div>
+				<div class="title">Here are your polls</div>
 				<div class="polls-holder">
 					<% for(var i = 0; i < polls.length; i++) { %>
 						<div class="poll"><%- link_to(polls[i].title, 'polls/'+polls[i]._id) %></div>

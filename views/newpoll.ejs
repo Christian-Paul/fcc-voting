@@ -13,7 +13,22 @@
 			<div class="navbar-container">
 				<div class="navbar">
 					<div class='destination'><a href='../'>All Polls</a></div>
-					<div class='destination'><a href='../newpoll'>New Poll</a></div>
+					<div class='destination'>
+						<% if(userInfo) { %>
+							<div class='user-interface'>
+								<div class="user-info">
+									<img src=<%- userInfo['profile_image_url_https'] %> class='user-image'>
+									<div class='username'><%= userInfo['screen_name'] %> &#9660</div>
+								</div>
+								<div class="dropdown">
+									<a href='../sign-out'>Sign Out</a>
+									<a href='../newpoll'>New Poll</a>
+								</div>
+							</div>
+						<% } else { %>
+							<a href='../request-token'>Sign in</a>
+						<% } %>
+					</div>
 				</div>
 			</div>
 

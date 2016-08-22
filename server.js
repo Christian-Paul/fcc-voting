@@ -9,13 +9,20 @@ var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 require('express-helpers')(app);
 
-app.use(session({
-	name: 'server-session-cookie-id',
-	secret: 'my express secret',
+app.set('view engine', 'ejs');
+
+var sessionOptions = {
+	secret: 'rgdhdgaweklgfwerlg',
 	saveUninitialized: true,
-	resave: true,
-	store: new FileStore()
-}));
+	resave: false,
+	store: new FileStore(),
+	name: 'my.connect.sid'
+}
+
+
+app.use(session(sessionOptions));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({extended: true}));
 
 var twitter = new Twitter({
 	consumerKey: config.consumerKey,
@@ -23,16 +30,16 @@ var twitter = new Twitter({
 	callback: config.callbackUrl
 });
 
-app.set('view engine', 'ejs');
-
-app.use('/public', express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://' + config.mongooseUsername + ':' + config.mongoosePassword + '@ds161245.mlab.com:61245/fcc-voting');
 
 var pollSchema = new mongoose.Schema({
 	title: String,
-	author: String,
-	options: Array
+	author: {
+		name: String,
+		twitterId: Number
+	},
+	options: [{ name: String, votes: { type: Number, default: 0 } }]
 });
 
 var Poll = mongoose.model('Poll', pollSchema)
@@ -41,14 +48,12 @@ app.listen(3000, function(req, res) {
 	console.log('listening on 3000');
 })
 
-app.use(bodyParser.urlencoded({extended: true}));
-
 app.get('/', function(req, res) {
 	Poll.find({}, 'title', function(err, results) {
 		if(err) {
 			console.log(err);
 		} else {
-			res.render('index.ejs', {polls: results});
+			res.render('index.ejs', {polls: results, userInfo: req.session.userInfo});
 		}
 	})
 });
@@ -77,14 +82,33 @@ app.get('/login/twitter/callback', function(req, res) {
             twitter.verifyCredentials(accessToken, accessSecret, function(err, user) {
                 if (err)
                     res.status(500).send(err);
-                else
-                    res.send(user);
+                else {
+                	req.session.userInfo = user;
+                	req.session.save(function(err) {
+                		if(err) {
+                			console.log(err);
+                		} else {
+                			res.redirect('/');
+                		}
+                	});
+                }
             });
     });
 });
 
+app.get('/sign-out', function(req, res) {
+	req.session.destroy(function(err) {
+		if(err) {
+			console.log(err);
+		} else {
+			res.clearCookie(sessionOptions.name);
+			res.redirect('/');
+		}
+	})
+});
+
 app.get('/newpoll', function(req, res) {
-	res.sendFile(__dirname + '/newpoll.html');
+	res.render('newpoll.ejs', {userInfo: req.session.userInfo});
 });
 
 app.post('/new-poll', function(req, res) {
@@ -99,16 +123,16 @@ app.post('/new-poll', function(req, res) {
 
 		formData.options.split('\r\n').forEach(function(item) {
 			optionsArr.push({
-				name: item,
-				votes: 0
+				name: item
 			});
 		});
 
-		var author = formData.author || 'Anonymous';
-
 		var newPoll = new Poll({
 			title: formData.title,
-			author: author,
+			author: {
+				name: req.session.userInfo['screen_name'],
+				twitterId: req.session.userInfo.id
+			},
 			options: optionsArr
 		});
 
@@ -128,11 +152,13 @@ app.get('/polls/:tagId', function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			res.render('poll.ejs', {poll: result});
+			res.render('poll.ejs', {poll: result, userInfo: req.session.userInfo});
 		}
 	})
 });
 
+
+// process a vote
 app.post('/polls/:tagId/vote', function(req, res) {
 
 	var userChoice = req.body['user-choice'];
@@ -152,7 +178,7 @@ app.post('/polls/:tagId/vote', function(req, res) {
 
 });
 
-
+// add a new option to a poll
 app.post('/polls/:tagId/add-option', function(req, res) {
 	var newOption = {
 		votes: 0,
@@ -169,6 +195,8 @@ app.post('/polls/:tagId/add-option', function(req, res) {
 	});
 });
 
+
+// delete a poll
 app.get('/polls/:tagId/delete-poll', function(req, res) {
 	Poll.findByIdAndRemove(req.params.tagId, function(err, doc) {
 		if(err) {
@@ -177,4 +205,20 @@ app.get('/polls/:tagId/delete-poll', function(req, res) {
 			res.redirect('/');
 		}
 	})
+});
+
+
+// view your own polls
+app.get('/mypolls', function(req, res) {
+	Poll.find( { 'author.twitterId' : req.session.userInfo.id }, function(err, results) {
+		res.render('mypolls.ejs', { polls: results, userInfo: req.session.userInfo })
+	});
+});
+
+
+// view another user's polls
+app.get('/users/:tagId', function(req, res) {
+	Poll.find( { 'author.twitterId' : req.params.tagId }, function(err, results) {
+		res.render('userpolls.ejs', { polls: results, userInfo: req.session.userInfo })
+	});
 });
