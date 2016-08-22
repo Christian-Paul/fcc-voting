@@ -3,33 +3,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Voting App</title>
-		<link rel='stylesheet' type='text/css' href='./public/newpoll.css'>
+		<link rel='stylesheet' type='text/css' href='./public/styles/style.css'>
+		<link rel='stylesheet' type='text/css' href='../public/styles/navbar.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	</head>
 
 	<body>
-		<div class='background'>
 
+		<div class='background'>
 			<div class="navbar-container">
-				<div class="navbar">
-					<div class='destination'><a href='../'>All Polls</a></div>
-					<div class='destination'>
-						<% if(userInfo) { %>
-							<div class='user-interface'>
-								<div class="user-info">
-									<img src=<%- userInfo['profile_image_url_https'] %> class='user-image'>
-									<div class='username'><%= userInfo['screen_name'] %> &#9660</div>
-								</div>
-								<div class="dropdown">
-									<a href='../sign-out'>Sign Out</a>
-									<a href='../newpoll'>New Poll</a>
-								</div>
-							</div>
-						<% } else { %>
-							<a href='../request-token'>Sign in</a>
-						<% } %>
-					</div>
-				</div>
+				<% include ./partials/navbar %>
 			</div>
 
 			<div class="main-container">
@@ -42,8 +25,6 @@
 					</form>
 				</div>
 			</div>
-
 		</div>
-
 	</body>
 </html>

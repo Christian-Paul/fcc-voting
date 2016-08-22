@@ -3,8 +3,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Voting App</title>
-		<link rel='stylesheet' type='text/css' href='../public/poll.css'>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<link rel='stylesheet' type='text/css' href='./public/styles/style.css'>
+		<link rel='stylesheet' type='text/css' href='../public/styles/navbar.css'>
 		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
 	</head>
 
@@ -12,26 +13,7 @@
 
 		<div class="background">
 			<div class="navbar-container">
-				<div class="navbar">
-					<div class='destination'><a href='../'>All Polls</a></div>
-					<div class='destination'>
-						<% if(userInfo) { %>
-							<div class='user-interface'>
-								<div class="user-info">
-									<img src=<%- userInfo['profile_image_url_https'] %> class='user-image'>
-									<div class='username'><%= userInfo['screen_name'] %> &#9660</div>
-								</div>
-								<div class="dropdown">
-									<a href='../sign-out'>Sign Out</a>
-									<a href='../newpoll'>New Poll</a>
-									<a href="../mypolls">My Polls</a>
-								</div>
-							</div>
-						<% } else { %>
-							<a href='../request-token'>Sign in</a>
-						<% } %>
-					</div>
-				</div>
+				<% include ./partials/navbar %>
 			</div>
 
 			<div class='main-container'>
@@ -95,9 +77,9 @@
 		<script>
 			var poll = <%- JSON.stringify(poll) %>;
 		</script>
-		<script src='../public/Chart.min.js'></script>
-		<script src='../public/makechart.js'></script>
-		<script type="text/javascript" src='../public/poll.js'></script>
+		<script src='../public/js/Chart.min.js'></script>
+		<script src='../public/js/makechart.js'></script>
+		<script src='../public/js/poll.js'></script>
 
 	</body>
 </html>

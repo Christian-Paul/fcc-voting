@@ -1,0 +1,20 @@
+<div class="navbar">
+	<div class='destination'><a href='../'>All Polls</a></div>
+	<div class='destination'>
+		<% if(userInfo) { %>
+			<div class='user-interface'>
+				<div class="user-info">
+					<img src=<%- userInfo['profile_image_url_https'] %> class='user-image'>
+					<div class='username'><%= userInfo['screen_name'] %> &#9660</div>
+				</div>
+				<div class="dropdown">
+					<a href="../mypolls">My Polls</a>
+					<a href='../newpoll'>New Poll</a>
+					<a href='../sign-out'>Sign Out</a>
+				</div>
+			</div>
+		<% } else { %>
+			<a href='../request-token'>Sign in</a>
+		<% } %>
+	</div>
+</div>

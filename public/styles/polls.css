@@ -1,0 +1,22 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #eee;
+  font-family: "Lato"; }
+  html .background, body .background {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh; }
+    html .background .main-container, body .background .main-container {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 4em;
+      width: 90vw;
+      max-width: 800px; }
+      html .background .main-container .title, body .background .main-container .title {
+        font-size: 2em; }
+
+/*# sourceMappingURL=polls.css.map */
