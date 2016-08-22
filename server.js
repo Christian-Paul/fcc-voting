@@ -3,11 +3,25 @@ var bodyParser = require('body-parser');
 var app = express();
 var path = require('path');
 var mongoose = require('mongoose');
-var config = require('./config.js');
 var Twitter = require('node-twitter-api');
 var session = require('express-session');
 var FileStore = require('session-file-store')(session);
 require('express-helpers')(app);
+app.enable('trust proxy');
+var port = process.env.PORT || 3000;
+
+// get credentials from config file in dev, or from heroku env in deployment
+if(port === 3000) {
+	var config = require('./config.js');
+} else {
+	var config = {
+		mongooseUsername: process.env.mongooseUsername,
+		mongoosePassword: process.env.mongoosePassword,
+		consumerKey: process.env.mongooseUsername.consumerKey,
+		consumerSecret: process.env.consumerSecret,
+		callbackUrl: process.env.callbackUrl
+	};
+}
 
 app.set('view engine', 'ejs');
 
@@ -50,7 +64,7 @@ var Poll = mongoose.model('Poll', pollSchema)
 
 
 // begin app
-app.listen(3000, function(req, res) {
+app.listen(port, function(req, res) {
 	console.log('listening on 3000');
 })
 
@@ -189,9 +203,13 @@ app.post('/polls/:tagId/vote', function(req, res) {
 		if(err) {
 			console.log(err);
 		} else {
-			// check to see if voters array contains the user's id already
-			// if their id is present, userAlreadyVoted return true
-			var userId = req.session.userInfo.id;
+			// check to see if voters array contains the user's id or IP already
+			// if their id/IP is present, userAlreadyVoted returns true
+			if(req.session.hasOwnProperty('userInfo') && req.session.userInfo) {
+				var userId = req.session.userInfo.id;
+			} else {
+				var userId = req.ip;
+			}
 			var userAlreadyVoted = (doc.voters.indexOf(userId) !== -1);
 
 			if(userAlreadyVoted) {
