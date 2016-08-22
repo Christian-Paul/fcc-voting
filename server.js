@@ -17,7 +17,7 @@ if(port === 3000) {
 	var config = {
 		mongooseUsername: process.env.mongooseUsername,
 		mongoosePassword: process.env.mongoosePassword,
-		consumerKey: process.env.mongooseUsername.consumerKey,
+		consumerKey: process.env.consumerKey,
 		consumerSecret: process.env.consumerSecret,
 		callbackUrl: process.env.callbackUrl
 	};
@@ -223,7 +223,6 @@ app.post('/polls/:tagId/vote', function(req, res) {
 					if(err) {
 						console.log(err);
 					} else {
-						console.log(doc.options);
 						res.send({
 							result: 'success',
 							message: 'Vote casted for: ' + doc.options[userChoice].name,
