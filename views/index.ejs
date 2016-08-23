@@ -2,10 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Voting App</title>
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<title>Votify</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:700,500,400,300,100|Comfortaa" rel="stylesheet">
 		<link rel='stylesheet' type='text/css' href='../public/styles/style.css'>
-    	<link rel="icon" href='../public/images/orange-sun.png'>
+    	<link rel="icon" href='public/images/orange-poll.png'>
 	</head>
 
 	<body>
@@ -16,7 +16,7 @@
 			</div>
 
 			<div class='main-container'>
-				<div class="title">Create or participate in polls</div>
+				<div class="title">Create and participate in polls</div>
 				<div class="polls-holder">
 					<% for(var i = 0; i < polls.length; i++) { %>
 						<div class="poll"><%- link_to(polls[i].title, 'polls/'+polls[i]._id) %></div>
@@ -28,6 +28,8 @@
 				<% include ./partials/footer %>
 			</footer>
 		</div>
+
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
 		<script src='../public/js/navbar.js'></script>
 	</body>
 </html>

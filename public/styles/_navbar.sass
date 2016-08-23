@@ -1,7 +1,7 @@
 @import 'palette'
-$nav-height: 5em
-$arrow-dimensions: 0.6em
-$dropdown-width: 10em
+$nav-height: 4.5rem
+$arrow-dimensions: 0.5rem
+$dropdown-width: 9rem
 
 .navbar-container
 	width: 100%
@@ -9,9 +9,9 @@ $dropdown-width: 10em
 	color: #777
 	position: fixed
 	top: 0
-	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2)
-	font-weight: 600
-	font-size: 0.875em
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1)
+	font-weight: 500
+	font-size: 0.875rem
 	text-transform: uppercase
 	display: flex
 	justify-content: center
@@ -31,24 +31,40 @@ $dropdown-width: 10em
 			justify-content: center
 			align-items: center
 			position: relative
-			transition: color 100ms ease
+			transition: color 250ms ease
+
+			.logo-holder
+				width: auto
 
 			> a
 				text-decoration: none
 				color: #777
 				height: $nav-height
-				width: 6em
+				width: 6rem
 				display: flex
 				align-items: center
 				justify-content: center
 
 				.logo
-					fill: #e94f28
-					transition: fill 100ms ease
+					fill: $accent-dark-orange
+					transition: fill 250ms ease
+					margin-right: 0.15rem
+					height: 3.75rem
+					width: auto
+
+				.logo-name
+					color: $accent-dark-orange
+					transition: color 250ms ease
+					text-transform: none
+					font-size: 1.25rem
+					font-family: 'Comfortaa'
 
 			a:hover
 				.logo
-					fill: darkorange
+					fill: $accent-light-orange
+
+				.logo-name
+					color: $accent-light-orange
 
 			.user-interface
 				cursor: pointer
@@ -60,7 +76,7 @@ $dropdown-width: 10em
 					align-items: center
 
 					.user-image
-						border-radius: 0.1em
+						border-radius: 0.1rem
 
 				.dropdown-arrow
 					position: absolute
@@ -74,7 +90,7 @@ $dropdown-width: 10em
 					position: absolute
 					height: 0
 					width: 0
-					top: $nav-height - 0.06em
+					top: $nav-height - 0.06rem
 					right: calc(50% - #{$arrow-dimensions})
 
 				.dropdown
@@ -99,6 +115,21 @@ $dropdown-width: 10em
 					border-right: $arrow-dimensions solid transparent
 					border-bottom: $arrow-dimensions solid #fff
 
+				.dropdown-arrow, .dropdown-arrow-shadow, .dropdown > a, .username
+					opacity: 0
+
+					animation:
+						name: menu1
+						duration: 150ms
+						timing-function: ease-in-out
+						fill-mode: forwards
+
+				@keyframes menu1
+					0%
+						opacity: 0
+					100%
+						opacity: 1
+
 				.dropdown
 					display: flex
 					flex-direction: column
@@ -115,6 +146,7 @@ $dropdown-width: 10em
 						text-decoration: none
 						color: #777
 						align-items: center
+						transition: background-color 250ms ease
 
 					a:hover
 						background-color: #eee
@@ -129,3 +161,20 @@ $dropdown-width: 10em
 						left: 25%
 						bottom: 0%
 						border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+
+			.sign-in
+				background-color: $accent-dark-orange
+				transition: background-color 250ms ease
+				border-radius: 0.1rem
+
+				a
+					text-decoration: none
+					color: #fff
+					height: 2.75rem
+					width: 6.5rem
+					display: flex
+					align-items: center
+					justify-content: center
+
+			.sign-in:hover
+				background-color: $accent-light-orange

@@ -2,9 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Voting App</title>
-		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+		<title>Votify</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:700,500,400,300,100" rel="stylesheet">
 		<link rel='stylesheet' type='text/css' href='../public/styles/poll.css'>
+    	<link rel="icon" href='public/images/orange-poll.png'>
 	</head>
 
 	<body>
@@ -78,13 +79,13 @@
 			</footer>
 		</div>
 		
-		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+		<script src='../public/js/navbar.js'></script>
 		<script>
 			var poll = <%- JSON.stringify(poll) %>;
 		</script>
 		<script src='../public/js/Chart.min.js'></script>
 		<script src='../public/js/makechart.js'></script>
 		<script src='../public/js/poll.js'></script>
-		<script src='../public/js/navbar.js'></script>
 	</body>
 </html>

@@ -1,10 +1,11 @@
-@import 'footer', 'navbar'
+@import 'footer', 'navbar', 'palette'
 
 html, body
 	margin: 0
 	padding: 0
 	background-color: #eee
-	font-family: 'Lato'
+	font-family: 'Roboto', Helvetica, Arial
+	font-weight: 300
 	height: 100%
 
 	.background
@@ -17,7 +18,7 @@ html, body
 			justify-content: center
 			width: 100%
 			flex: 1
-			margin-top: 8em
+			margin-top: 8rem
 
 			.form-outline
 				height: 100%
@@ -27,9 +28,9 @@ html, body
 				display: flex
 				justify-content: center
 				align-items: center
-				padding-top: 1.5em
-				padding-bottom: 2.5em
-				margin-bottom: 4em
+				padding-top: 1.5rem
+				padding-bottom: 2.5rem
+				margin-bottom: 4rem
 				box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25)
 
 				.form-holder
@@ -43,36 +44,50 @@ html, body
 						text-align: center
 
 					form
-						margin-top: 1em
+						margin-top: 1rem
 						display: flex
 						flex-direction: column
 
 						.poll-title-input
-							font-size: 1.1em
+							font-size: 1em
 
 						input
-							height: 2.5em
-							padding-left: 0.25em
+							height: 2.5rem
+							padding-left: 0.25rem
+							font-weight: 100
 
 						.options-holder
 							display: flex
 							flex-direction: column
-							margin-top: 1.5em
+							margin-top: 1.75rem
+
+							input
+								height: 2.25rem
 
 							input + input
-								margin-top: 1em
+								margin-top: 0.75rem
 
 
 						button
-							margin-top: 1.5em
-							height: 3em
-							width: 30%
-							margin-left: 35%
-							background-color: brown
+							font-size: 1rem
+							font-weight: 300
+							margin-top: 1.5rem
+							height: 2.75rem
+							width: 6.5rem
+							display: flex
+							align-self: center
+							justify-content: center
+							align-items: center
+							background-color: $accent-dark-orange
 							color: #fff
 							border: none
 							cursor: pointer
+							border-radius: 0.1rem
+							transition: background-color 250ms ease
+
+						button:hover
+							background-color: $accent-light-orange
 
 		.test
-			height: 24em
+			height: 24rem
 			background-color: #444
