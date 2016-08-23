@@ -2,7 +2,6 @@
 
 // trigger function whenever input inside of options holder receives input
 $('.options-holder').on('input', 'input', function() {
-	console.log('i herd ya');
 
 	// assume inputs are full
 	// if check reveals that an input is empty this will be set to false

@@ -21,7 +21,8 @@ footer {
   background-color: #111;
   color: #fff;
   position: fixed;
-  top: 0; }
+  top: 0;
+  z-index: 1; }
   .navbar-container .navbar {
     width: 95vw;
     display: flex;
