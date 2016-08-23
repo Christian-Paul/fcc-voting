@@ -148,14 +148,21 @@ app.post('/new-poll', function(req, res) {
 		formData.hasOwnProperty('option-2') && formData['option-2']
 		) {
 
-		// pushes formData object's values to formDataArr
+		// sanitizes and pushes formData object's values to formDataArr
 		var formDataArr = [];
 		for(item in formData) {
-			formDataArr.push(formData[item]);
+			if(formData[item]) {
+				formDataArr.push(formData[item]);
+			}
 		}
 
 		// title is first item in array, formDataArr now contains only options
 		var title = formDataArr.shift();
+
+		// check to see if title ends in question mark, if it doesn't, add it
+		if(title.lastIndexOf('?') !== (title.length - 1)) {
+			title = title.concat('?');
+		}
 
 		// creates an array of objects whose name property have the value of the formData options
 		var optionsArrOfObjects = [];
