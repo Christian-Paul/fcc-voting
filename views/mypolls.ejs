@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Voting App</title>
 		<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-		<link rel='stylesheet' type='text/css' href='../public/styles/polls.css'>
+		<link rel='stylesheet' type='text/css' href='../public/styles/style.css'>
 	</head>
 
 	<body>
@@ -18,10 +18,15 @@
 				<div class="title">Here are your polls</div>
 				<div class="polls-holder">
 					<% for(var i = 0; i < polls.length; i++) { %>
-						<div class="poll"><%- link_to(polls[i].title, 'polls/'+polls[i]._id) %></div>
+						<div class="poll"><%- link_to(polls[i].title, '../polls/'+polls[i]._id) %></div>
 					<% } %>
 				</div>
 			</div>
+
+			<footer>
+				<% include ./partials/footer %>
+			</footer>
 		</div>
+		<script src='../public/js/navbar.js'></script>
 	</body>
 </html>

@@ -15,61 +15,67 @@
 			</div>
 
 			<div class='main-container'>
-				<div class="poll-holder">
-					<div class='poll-interface'>
+				<div class="poll-outline">
+					<div class='poll-holder'>
+						<div class='poll-interface'>
 
-						<div class="poll-title">
-							<%= poll.title %>
-						</div>
+							<div class="poll-title">
+								<%= poll.title %>
+							</div>
 
-						<div class="poll-author">
-							by <%- link_to(poll.author.name, '../users/' + poll.author.twitterId) %>
-						</div>
+							<div class="poll-author">
+								by <%- link_to(poll.author.name, '../users/' + poll.author.twitterId) %>
+							</div>
 
-						<form id='vote-form' action=<%= poll['_id'] + '/vote' %>>
-							<% for(var i = 0; i < poll.options.length; i++) { %>
-								<div>
-									<input type="radio" name='user-choice' required value=<%= i %>>
-									<%= poll.options[i].name %>
+							<form id='vote-form' action=<%= poll['_id'] + '/vote' %>>
+								<% for(var i = 0; i < poll.options.length; i++) { %>
+									<div>
+										<input type="radio" name='user-choice' required value=<%= i %>>
+										<%= poll.options[i].name %>
+									</div>
+								<% } %>
+								<button type='submit'>Vote!</button>
+							</form>
+
+							<div class="vote-response"></div>
+
+							<% if(userInfo && userInfo.hasOwnProperty('screen_name')) { %>
+								<div class="new-option">
+									<div class='init-new-option'>
+										Add your own option...
+									</div>
+									<form method='POST' class='new-option-form' action=<%= poll['_id'] + '/add-option' %> >
+										<input type="text" name="new-option" placeholder="New Option" required>
+										<button type='submit'>Create</button>
+										<button type='button' class='cancel-new'>Cancel</button>								
+									</form>
 								</div>
 							<% } %>
-							<button type='submit'>Vote!</button>
-						</form>
 
-						<div class="vote-response"></div>
-
-						<% if(userInfo && userInfo.hasOwnProperty('screen_name')) { %>
-							<div class="new-option">
-								<div class='init-new-option'>
-									Add your own option...
+							<% if(userInfo && userInfo.hasOwnProperty('screen_name') && userInfo['screen_name'] === poll.author.name) { %>
+								<div class='delete-button'>
+									<a href=<%= poll['_id'] + '/delete-poll' %>>Delete Poll</a>
 								</div>
-								<form method='POST' class='new-option-form' action=<%= poll['_id'] + '/add-option' %> >
-									<input type="text" name="new-option" placeholder="New Option" required>
-									<button type='submit'>Create</button>
-									<button type='button' class='cancel-new'>Cancel</button>								
-								</form>
-							</div>
-						<% } %>
-
-						<% if(userInfo && userInfo.hasOwnProperty('screen_name') && userInfo['screen_name'] === poll.author.name) { %>
-							<div class='delete-button'>
-								<a href=<%= poll['_id'] + '/delete-poll' %>>Delete Poll</a>
-							</div>
-						<% } %>
-
-					</div>
-					<div class="poll-results">
-						<div class="poll-chart">
-							<canvas id='myChart' width='400' height='400'></canvas>
-						</div>
-						<div class='text-results'>
-							<% for(var i = 0; i < poll.options.length; i++) { %>
-								<%= poll.options[i].name %>: <%= poll.options[i].votes %>
 							<% } %>
+
+						</div>
+						<div class="poll-results">
+							<div class="poll-chart">
+								<canvas id='myChart' width='400' height='400'></canvas>
+							</div>
+							<div class='text-results'>
+								<% for(var i = 0; i < poll.options.length; i++) { %>
+									<%= poll.options[i].name %>: <%= poll.options[i].votes %>
+								<% } %>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			<footer>
+				<% include ./partials/footer %>
+			</footer>
 		</div>
 		
 		<script   src="https://code.jquery.com/jquery-3.1.0.min.js"   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
@@ -79,6 +85,6 @@
 		<script src='../public/js/Chart.min.js'></script>
 		<script src='../public/js/makechart.js'></script>
 		<script src='../public/js/poll.js'></script>
-
+		<script src='../public/js/navbar.js'></script>
 	</body>
 </html>

@@ -2,85 +2,130 @@ footer {
   display: flex;
   width: 100vw;
   max-width: 100%;
-  background-color: #111;
+  background-color: #b0bec5;
   justify-content: center;
   align-items: center;
-  height: 3em; }
+  height: 4em; }
   footer .info-container {
     width: 90vw;
     display: flex;
     justify-content: space-between; }
     footer .info-container .source a, footer .info-container .signature a {
       text-decoration: none;
-      color: #999; }
+      color: #6f7476;
+      transition: color 200ms ease; }
     footer .info-container .source a:hover, footer .info-container .signature a:hover {
+      color: #515556;
       text-decoration: underline; }
 
 .navbar-container {
   width: 100%;
-  background-color: #111;
-  color: #fff;
+  background-color: #fff;
+  color: #777;
   position: fixed;
   top: 0;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  font-size: 0.875em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
   z-index: 1; }
   .navbar-container .navbar {
-    width: 95vw;
+    width: 95%;
     display: flex;
-    justify-content: flex-end; }
+    justify-content: space-between; }
     .navbar-container .navbar .destination:hover {
-      background-color: #222; }
-    .navbar-container .navbar .destination:first-child {
-      border-left: 1px #444 solid; }
+      color: brown; }
     .navbar-container .navbar .destination {
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      border-right: 1px #444 solid; }
-      .navbar-container .navbar .destination .user-interface {
-        cursor: pointer;
-        display: flex;
-        height: 4em; }
-        .navbar-container .navbar .destination .user-interface .user-info {
-          display: flex;
-          align-items: center;
-          margin-left: 0.5em;
-          margin-right: 0.5em; }
-          .navbar-container .navbar .destination .user-interface .user-info .user-image {
-            border-radius: 0.1em; }
-          .navbar-container .navbar .destination .user-interface .user-info .username {
-            margin-left: 0.5em; }
-        .navbar-container .navbar .destination .user-interface .dropdown {
-          position: absolute;
-          top: 100%;
-          left: 0%;
-          width: 100%; }
-          .navbar-container .navbar .destination .user-interface .dropdown a {
-            display: none; }
-      .navbar-container .navbar .destination .user-interface:hover .dropdown {
-        display: flex;
-        flex-direction: column; }
-        .navbar-container .navbar .destination .user-interface:hover .dropdown a {
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          background-color: #333; }
-        .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover {
-          background-color: #444; }
-      .navbar-container .navbar .destination a {
+      transition: color 100ms ease; }
+      .navbar-container .navbar .destination > a {
         text-decoration: none;
-        color: #fff;
-        height: 4em;
+        color: #777;
+        height: 5em;
         width: 6em;
         display: flex;
         align-items: center;
         justify-content: center; }
+        .navbar-container .navbar .destination > a .logo {
+          fill: #e94f28;
+          transition: fill 100ms ease; }
+      .navbar-container .navbar .destination a:hover .logo {
+        fill: darkorange; }
+      .navbar-container .navbar .destination .user-interface {
+        cursor: pointer;
+        display: flex;
+        height: 5em; }
+        .navbar-container .navbar .destination .user-interface .user-info {
+          display: flex;
+          align-items: center; }
+          .navbar-container .navbar .destination .user-interface .user-info .user-image {
+            border-radius: 0.1em; }
+        .navbar-container .navbar .destination .user-interface .dropdown-arrow {
+          position: absolute;
+          height: 0;
+          width: 0;
+          top: 5em;
+          right: calc(50% - 0.6em);
+          z-index: 2; }
+        .navbar-container .navbar .destination .user-interface .dropdown-arrow-shadow {
+          position: absolute;
+          height: 0;
+          width: 0;
+          top: 4.94em;
+          right: calc(50% - 0.6em); }
+        .navbar-container .navbar .destination .user-interface .dropdown {
+          position: absolute;
+          top: 5.6em;
+          right: 0;
+          display: flex;
+          min-width: 10em; }
+          .navbar-container .navbar .destination .user-interface .dropdown a, .navbar-container .navbar .destination .user-interface .dropdown .username {
+            display: none; }
+      .navbar-container .navbar .destination .user-interface.triggered .dropdown-arrow-shadow {
+        border-left: 0.6em solid transparent;
+        border-right: 0.6em solid transparent;
+        border-bottom: 0.6em solid rgba(0, 0, 0, 0.2); }
+      .navbar-container .navbar .destination .user-interface.triggered .dropdown-arrow {
+        border-left: 0.6em solid transparent;
+        border-right: 0.6em solid transparent;
+        border-bottom: 0.6em solid #fff; }
+      .navbar-container .navbar .destination .user-interface.triggered .dropdown {
+        display: flex;
+        flex-direction: column;
+        height: 15em;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2); }
+        .navbar-container .navbar .destination .user-interface.triggered .dropdown a, .navbar-container .navbar .destination .user-interface.triggered .dropdown .username {
+          height: 5em;
+          background-color: #fff;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          position: relative;
+          text-decoration: none;
+          color: #777;
+          align-items: center; }
+        .navbar-container .navbar .destination .user-interface.triggered .dropdown a:hover {
+          background-color: #eee; }
+        .navbar-container .navbar .destination .user-interface.triggered .dropdown .username {
+          cursor: default; }
+        .navbar-container .navbar .destination .user-interface.triggered .dropdown .username:after {
+          content: "";
+          position: absolute;
+          width: 50%;
+          left: 25%;
+          bottom: 0%;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
 
 html, body {
   margin: 0;
   padding: 0;
   background-color: #f5f5f5;
-  font-family: "Lato";
+  font-family: "Roboto", Helvetica, Arial;
   height: 100%; }
   html .background, body .background {
     display: flex;
