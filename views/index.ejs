@@ -15,13 +15,17 @@
 			</div>
 
 			<div class='main-container'>
-				<div class="title">Here are some polls</div>
+				<div class="title">Create or participate in polls</div>
 				<div class="polls-holder">
 					<% for(var i = 0; i < polls.length; i++) { %>
 						<div class="poll"><%- link_to(polls[i].title, 'polls/'+polls[i]._id) %></div>
 					<% } %>
 				</div>
 			</div>
+
+			<footer>
+				<% include ./partials/footer %>
+			</footer>
 		</div>
 	</body>
 </html>

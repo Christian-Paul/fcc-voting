@@ -1,6 +1,7 @@
 footer {
   display: flex;
   width: 100vw;
+  max-width: 100%;
   background-color: #111;
   justify-content: center;
   align-items: center;
@@ -12,9 +13,11 @@ footer {
     footer .info-container .source a, footer .info-container .signature a {
       text-decoration: none;
       color: #999; }
+    footer .info-container .source a:hover, footer .info-container .signature a:hover {
+      text-decoration: underline; }
 
 .navbar-container {
-  width: 100vw;
+  width: 100%;
   background-color: #111;
   color: #fff;
   position: fixed;

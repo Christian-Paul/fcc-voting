@@ -3,95 +3,66 @@
 html, body
 	margin: 0
 	padding: 0
-	background-color: #eee
+	background-color: #f5f5f5
 	font-family: 'Lato'
+	height: 100%
 
 	.background
 		display: flex
 		flex-direction: column
-		align-items: center
-		width: 100vw
-		height: 100vh
-
-		.navbar-container
-			width: 100vw
-			background-color: #111
-			color: #fff
-
-			.navbar
-				width: 95vw
-				display: flex
-				justify-content: flex-end
-
-				.destination:hover
-					background-color: #222
-
-				.destination:first-child
-					border-left: 1px #444 solid
-
-				.destination
-					display: flex
-					justify-content: center
-					align-items: center
-					position: relative
-					border-right: 1px #444 solid
-
-					.user-interface
-						cursor: pointer
-						display: flex
-						height: 4em
-
-						.user-info
-							display: flex
-							align-items: center
-							margin-left: 0.5em
-							margin-right: 0.5em
-
-							.user-image
-								border-radius: 0.1em
-
-							.username
-								margin-left: 0.5em
-
-						.dropdown
-							position: absolute
-							top: 100%
-							left: 0%
-							width: 100%
-
-							a
-								display: none
-
-					.user-interface:hover 
-						.dropdown
-							display: flex
-							flex-direction: column
-
-							a
-								width: 100%
-								display: flex
-								justify-content: center
-								background-color: #333
-
-							a:hover
-								background-color: #444
-
-					a
-						text-decoration: none
-						color: #fff
-						height: 4em
-						width: 6em
-						display: flex
-						align-items: center
-						justify-content: center
+		min-height: 100%
 
 		.main-container
 			display: flex
 			align-items: center
 			flex-direction: column
-			margin-top: 4em
-			width: 90vw
-			max-width: 800px
+			margin-top: 8em
+			flex: 1
+			width: 100%
 
 			.title
-				font-size: 2em
+				font-size: 3em
+
+			.polls-holder
+				margin-top: 2em
+				margin-bottom: 4em
+				width: 60%
+				max-width: 1000px
+				display: flex
+				flex-direction: column
+				align-items: center
+				background-color: #fff
+				padding-top: 1em
+				padding-bottom: 1em
+				border-radius: 2px
+				box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4)
+
+				.poll
+					width: 100%
+					height: 4em
+					display: flex
+					position: relative
+
+					a
+						height: 100%
+						width: 100%
+						display: flex
+						justify-content: center
+						align-items: center
+						text-decoration: none
+						color: #000
+						background-color: #fff
+
+					a:hover
+						background-color: #eee
+
+				.poll:after
+					content: ''
+					position: absolute
+					width: 80%
+					bottom: 0
+					left: 10%
+					border-top: 1px solid rgba(50, 50, 50, 0.25)
+
+				.poll:last-child:after
+					border: none

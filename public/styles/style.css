@@ -1,6 +1,7 @@
 footer {
   display: flex;
   width: 100vw;
+  max-width: 100%;
   background-color: #111;
   justify-content: center;
   align-items: center;
@@ -12,9 +13,11 @@ footer {
     footer .info-container .source a, footer .info-container .signature a {
       text-decoration: none;
       color: #999; }
+    footer .info-container .source a:hover, footer .info-container .signature a:hover {
+      text-decoration: underline; }
 
 .navbar-container {
-  width: 100vw;
+  width: 100%;
   background-color: #111;
   color: #fff;
   position: fixed;
@@ -75,78 +78,59 @@ footer {
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #eee;
-  font-family: "Lato"; }
+  background-color: #f5f5f5;
+  font-family: "Lato";
+  height: 100%; }
   html .background, body .background {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    height: 100vh; }
-    html .background .navbar-container, body .background .navbar-container {
-      width: 100vw;
-      background-color: #111;
-      color: #fff; }
-      html .background .navbar-container .navbar, body .background .navbar-container .navbar {
-        width: 95vw;
-        display: flex;
-        justify-content: flex-end; }
-        html .background .navbar-container .navbar .destination:hover, body .background .navbar-container .navbar .destination:hover {
-          background-color: #222; }
-        html .background .navbar-container .navbar .destination:first-child, body .background .navbar-container .navbar .destination:first-child {
-          border-left: 1px #444 solid; }
-        html .background .navbar-container .navbar .destination, body .background .navbar-container .navbar .destination {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          position: relative;
-          border-right: 1px #444 solid; }
-          html .background .navbar-container .navbar .destination .user-interface, body .background .navbar-container .navbar .destination .user-interface {
-            cursor: pointer;
-            display: flex;
-            height: 4em; }
-            html .background .navbar-container .navbar .destination .user-interface .user-info, body .background .navbar-container .navbar .destination .user-interface .user-info {
-              display: flex;
-              align-items: center;
-              margin-left: 0.5em;
-              margin-right: 0.5em; }
-              html .background .navbar-container .navbar .destination .user-interface .user-info .user-image, body .background .navbar-container .navbar .destination .user-interface .user-info .user-image {
-                border-radius: 0.1em; }
-              html .background .navbar-container .navbar .destination .user-interface .user-info .username, body .background .navbar-container .navbar .destination .user-interface .user-info .username {
-                margin-left: 0.5em; }
-            html .background .navbar-container .navbar .destination .user-interface .dropdown, body .background .navbar-container .navbar .destination .user-interface .dropdown {
-              position: absolute;
-              top: 100%;
-              left: 0%;
-              width: 100%; }
-              html .background .navbar-container .navbar .destination .user-interface .dropdown a, body .background .navbar-container .navbar .destination .user-interface .dropdown a {
-                display: none; }
-          html .background .navbar-container .navbar .destination .user-interface:hover .dropdown, body .background .navbar-container .navbar .destination .user-interface:hover .dropdown {
-            display: flex;
-            flex-direction: column; }
-            html .background .navbar-container .navbar .destination .user-interface:hover .dropdown a, body .background .navbar-container .navbar .destination .user-interface:hover .dropdown a {
-              width: 100%;
-              display: flex;
-              justify-content: center;
-              background-color: #333; }
-            html .background .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover, body .background .navbar-container .navbar .destination .user-interface:hover .dropdown a:hover {
-              background-color: #444; }
-          html .background .navbar-container .navbar .destination a, body .background .navbar-container .navbar .destination a {
-            text-decoration: none;
-            color: #fff;
-            height: 4em;
-            width: 6em;
-            display: flex;
-            align-items: center;
-            justify-content: center; }
+    min-height: 100%; }
     html .background .main-container, body .background .main-container {
       display: flex;
       align-items: center;
       flex-direction: column;
-      margin-top: 4em;
-      width: 90vw;
-      max-width: 800px; }
+      margin-top: 8em;
+      flex: 1;
+      width: 100%; }
       html .background .main-container .title, body .background .main-container .title {
-        font-size: 2em; }
+        font-size: 3em; }
+      html .background .main-container .polls-holder, body .background .main-container .polls-holder {
+        margin-top: 2em;
+        margin-bottom: 4em;
+        width: 60%;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #fff;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        border-radius: 2px;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4); }
+        html .background .main-container .polls-holder .poll, body .background .main-container .polls-holder .poll {
+          width: 100%;
+          height: 4em;
+          display: flex;
+          position: relative; }
+          html .background .main-container .polls-holder .poll a, body .background .main-container .polls-holder .poll a {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #000;
+            background-color: #fff; }
+          html .background .main-container .polls-holder .poll a:hover, body .background .main-container .polls-holder .poll a:hover {
+            background-color: #eee; }
+        html .background .main-container .polls-holder .poll:after, body .background .main-container .polls-holder .poll:after {
+          content: "";
+          position: absolute;
+          width: 80%;
+          bottom: 0;
+          left: 10%;
+          border-top: 1px solid rgba(50, 50, 50, 0.25); }
+        html .background .main-container .polls-holder .poll:last-child:after, body .background .main-container .polls-holder .poll:last-child:after {
+          border: none; }
 
 /*# sourceMappingURL=style.css.map */
