@@ -258,7 +258,8 @@ html, body {
           html .background .main-container .poll-outline .poll-holder .poll-results, body .background .main-container .poll-outline .poll-holder .poll-results {
             display: flex;
             flex-direction: column;
-            align-items: center; }
+            align-items: center;
+            justify-content: center; }
             html .background .main-container .poll-outline .poll-holder .poll-results .text-results, body .background .main-container .poll-outline .poll-holder .poll-results .text-results {
               margin-top: 0.5em; }
 

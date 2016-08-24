@@ -181,12 +181,14 @@ app.post('/new-poll', function(req, res) {
 			options: optionsArrOfObjects
 		});
 
-		newPoll.save(function(err) {
+		newPoll.save(function(err, poll) {
 			if(err) {
 				console.log(err);
+			} else {
+				// redirect user to the poll they just created
+				res.redirect('/polls/' + poll['_id']);
 			}
-		});
-		res.redirect('/')	
+		});	
 	}
 });
 
