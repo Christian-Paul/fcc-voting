@@ -30,7 +30,7 @@ if(anyVotes) {
     resultsHolder.append('<div class="poll-chart"></div>');
     var chartHolder = $('.poll-chart');
     chartHolder.append("<canvas id='myChart' width='400' height='400'></canvas>");
-    var ctx = document.getElementById('myChart');
+    var ctx = $('#myChart');
 
     // render chart
     var myDoughnutChart = new Chart(ctx, {
@@ -52,5 +52,5 @@ if(anyVotes) {
     resultsHolder.append('<div class="text-results">' + textResults + '</div>');
 } else {
     // if there were no votes, show placeholder
-    resultsHolder.append('No results yet :C');
+    resultsHolder.append('<div class="no-results-placeholder">No results yet :C</div>');
 }
