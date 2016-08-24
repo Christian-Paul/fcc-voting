@@ -65,7 +65,7 @@ function updateText(options) {
 		var newResults = '';
 
 		for(var i = 0; i < options.length; i++) {
-			newResults = newResults.concat('<div>' + options[i].name + ': ' + options[i].votes + '</div>');
+			newResults = newResults.concat('<div>' + options[i].name + ': ' + options[i].votes + '&nbsp;</div>');
 		}
 
 		textResults.replaceWith('<div class=".text-results">' + newResults + '</div>');
@@ -75,7 +75,7 @@ function updateText(options) {
 		var textResults = '';
 
 		for(var i = 0; i < options.length; i++) {
-			textResults = textResults.concat('<div>' + options[i].name + ': ' + options[i].votes + '</div>');
+			textResults = textResults.concat('<div>' + options[i].name + ': ' + options[i].votes + '&nbsp;</div>');
 		}
 
     	resultsHolder.append('<div class="text-results">' + textResults + '</div>');
@@ -86,17 +86,21 @@ function updateText(options) {
 
 
 
-// when user clicks 'add your own option...' the new option interface appears
+// when user clicks 'add your own option...' 
+// the new option interface appears and the vote button is hidden
 $('.init-new-option').click(function() {
+	$('.vote-button').toggle(400);
 	$('.init-new-option').toggle(400, function() {
 		$('.new-option-form').toggle(400);
 	});
 });
 
-// when user clicks cancel, the new option interface is hidden
+// when user clicks cancel
+// the new option interface is hidden and the vote button appears
 $('.cancel-new').click(function() {
 	$('.new-option-form').toggle(400, function() {
 		$('.init-new-option').toggle(400);
+		$('.vote-button').toggle(400);
 	});
 });
 

@@ -23,44 +23,42 @@
 							<div class="poll-title">
 								<%= poll.title %>
 							</div>
-
 							<div class="poll-author">
 								by <%- link_to(poll.author.name, '../users/' + poll.author.twitterId) %>
 							</div>
 
-							<form id='vote-form' action=<%= poll['_id'] + '/vote' %>>
-								<% for(var i = 0; i < poll.options.length; i++) { %>
-									<div>
-										<input type="radio" name='user-choice' required value=<%= i %>>
-										<%= poll.options[i].name %>
+							<div class='poll-indent'>
+								<form id='vote-form' action=<%= poll['_id'] + '/vote' %>>
+									<% for(var i = 0; i < poll.options.length; i++) { %>
+										<div class='option'>
+											<input type="radio" name='user-choice' required value=<%= i %>>
+											<%= poll.options[i].name %>
+										</div>
+									<% } %>
+									<div class='init-new-option'>Or add your own option...</div>
+									<button class='vote-button' type='submit'>Vote!</button>
+								</form>
+
+								<div class="vote-response"></div>
+
+								<% if(userInfo && userInfo.hasOwnProperty('screen_name')) { %>
+									<div class="new-option">
+										<form method='POST' class='new-option-form' action=<%= poll['_id'] + '/add-option' %> >
+											<input type="text" name="new-option" placeholder="New Option" required>
+											<button type='submit' class='create-new'>Create</button>
+											<button type='button' class='cancel-new'>Cancel</button>								
+										</form>
 									</div>
 								<% } %>
-								<button type='submit'>Vote!</button>
-							</form>
+							</div>
 
-							<div class="vote-response"></div>
-
-							<% if(userInfo && userInfo.hasOwnProperty('screen_name')) { %>
-								<div class="new-option">
-									<div class='init-new-option'>
-										Add your own option...
-									</div>
-									<form method='POST' class='new-option-form' action=<%= poll['_id'] + '/add-option' %> >
-										<input type="text" name="new-option" placeholder="New Option" required>
-										<button type='submit'>Create</button>
-										<button type='button' class='cancel-new'>Cancel</button>								
-									</form>
-								</div>
-							<% } %>
-
+						</div>
+						<div class="poll-results">
 							<% if(userInfo && userInfo.hasOwnProperty('screen_name') && userInfo['screen_name'] === poll.author.name) { %>
 								<div class='delete-button'>
 									<a href=<%= poll['_id'] + '/delete-poll' %>>Delete Poll</a>
 								</div>
 							<% } %>
-
-						</div>
-						<div class="poll-results">
 						</div>
 					</div>
 				</div>

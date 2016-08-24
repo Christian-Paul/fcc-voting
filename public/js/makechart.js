@@ -47,10 +47,10 @@ if(anyVotes) {
     // add text resutls
     var textResults = '';
     categoryNames.forEach(function(name, index) {
-        textResults = textResults.concat('<div>' + name + ': ' + categoryVotes[index] + '</div>')
+        textResults = textResults.concat('<div>' + name + ': ' + categoryVotes[index] + '&nbsp;</div>')
     });
     resultsHolder.append('<div class="text-results">' + textResults + '</div>');
 } else {
     // if there were no votes, show placeholder
-    resultsHolder.append('<div class="no-results-placeholder">No results yet. Vote and add some!</div>');
+    resultsHolder.append('<div class="no-results-placeholder">No results yet :(</div>');
 }

@@ -1,10 +1,11 @@
-@import 'footer', 'navbar'
+@import 'footer', 'navbar', 'palette'
 
 html, body
 	margin: 0
 	padding: 0
 	background-color: #f5f5f5
 	font-family: 'Roboto', Helvetica, Arial
+	font-weight: 300
 	height: 100%
 
 	.background
@@ -37,55 +38,96 @@ html, body
 					width: 85%
 
 					.poll-interface
+						max-width: 50%
 						display: flex
 						flex-direction: column
 
 						.poll-title
-							font-size: 2em
+							font-size: 2.75rem
 
 						.poll-author
 							a
 								color: #000
 
-						form
-							margin-top: 0.25em
+						.poll-indent
+							margin-left: 1rem
+							margin-top: 0.5rem
 
-							button
-								margin-top: 0.5em
-								background-color: darkgreen
-								border: none
-								color: #fff
-								height: 3em
-								width: 6em
-								cursor: pointer
-
-						.new-option
-							margin-top: 0.5em
-							display: flex
-
-							.init-new-option
-								color: brown
-								cursor: pointer
-
-							.new-option-form
-								display: none
-
-						.delete-button
-							display: flex
-							margin-top: 2em
-							align-self: center
-							height: 3em
-							width: 8em
-
-							a
-								background-color: brown
-								color: #fff
-								text-decoration: none
-								height: 100%
-								width: 100%
+							#vote-form
 								display: flex
-								justify-content: center
-								align-items: center
+								flex-direction: column
+
+								.option
+									margin-top: 1rem
+									font-size: 1.2rem
+
+								.init-new-option
+									color: #000
+									cursor: pointer
+									margin-top: 1rem
+									margin-left: 1.5rem
+									transition: color 250ms ease
+
+								.init-new-option:hover
+									color: #222
+
+								.vote-button
+									font-size: 1.2rem
+									border-radius: 2px
+									font-family: 'Roboto'
+									font-weight: 300
+									margin-top: 1.25rem
+									background-color: $primary-dark
+									border: none
+									color: #fff
+									height: 2.5rem
+									width: 6rem
+									cursor: pointer
+									align-self: center
+									transition: background-color 250ms ease
+
+								.vote-button:hover
+									background-color: $primary-light
+
+							.new-option
+								margin-top: 1rem
+								display: flex
+
+								.new-option-form
+									display: none
+
+									input
+										height: 1.65rem
+										padding-left: 0.25rem
+
+
+									.create-new, .cancel-new
+										height: 2rem
+										width: 6rem
+										border-radius: 2px
+										font-family: 'Roboto'
+										font-weight: 300
+										border: none
+										color: #fff
+										cursor: pointer
+
+									.create-new
+										background-color: $primary-dark
+										transition: background-color 250ms ease
+
+									.create-new:hover
+										background-color: $primary-light
+
+									.cancel-new
+										background-color: #fff
+										border: 1px solid #333
+										color: #333
+										transition: background-color 250ms ease, color 250ms ease
+
+									.cancel-new:hover
+										background-color: #333
+										color: #fff
+
 
 					.poll-results
 						display: flex
@@ -93,7 +135,33 @@ html, body
 						align-items: center
 						justify-content: center
 
-						.text-results
-							margin-top: 0.5em
+						.delete-button
+							margin-top: 1rem
+							display: flex
+							align-self: center
+							height: 3rem
+							width: 8rem
+							order: 5
 
-						.no-results-placeholder
+							a
+								background-color: #fff
+								color: $warn-dark
+								border: 1px solid $warn-dark
+								border-radius: 2px
+								text-decoration: none
+								height: 100%
+								width: 100%
+								display: flex
+								justify-content: center
+								align-items: center
+								transition: color 250ms ease, background-color 250ms ease
+
+							a:hover
+								background-color: $warn-dark
+								color: #fff
+
+						.text-results
+							margin-top: 0.5rem
+							display: flex
+							flex-wrap: wrap
+							max-width: 400px

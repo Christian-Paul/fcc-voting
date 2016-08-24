@@ -189,6 +189,7 @@ html, body {
   padding: 0;
   background-color: #f5f5f5;
   font-family: "Roboto", Helvetica, Arial;
+  font-weight: 300;
   height: 100%; }
   html .background, body .background {
     display: flex;
@@ -216,51 +217,107 @@ html, body {
           justify-content: space-between;
           width: 85%; }
           html .background .main-container .poll-outline .poll-holder .poll-interface, body .background .main-container .poll-outline .poll-holder .poll-interface {
+            max-width: 50%;
             display: flex;
             flex-direction: column; }
             html .background .main-container .poll-outline .poll-holder .poll-interface .poll-title, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-title {
-              font-size: 2em; }
+              font-size: 2.75rem; }
             html .background .main-container .poll-outline .poll-holder .poll-interface .poll-author a, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-author a {
               color: #000; }
-            html .background .main-container .poll-outline .poll-holder .poll-interface form, body .background .main-container .poll-outline .poll-holder .poll-interface form {
-              margin-top: 0.25em; }
-              html .background .main-container .poll-outline .poll-holder .poll-interface form button, body .background .main-container .poll-outline .poll-holder .poll-interface form button {
-                margin-top: 0.5em;
-                background-color: darkgreen;
-                border: none;
-                color: #fff;
-                height: 3em;
-                width: 6em;
-                cursor: pointer; }
-            html .background .main-container .poll-outline .poll-holder .poll-interface .new-option, body .background .main-container .poll-outline .poll-holder .poll-interface .new-option {
-              margin-top: 0.5em;
-              display: flex; }
-              html .background .main-container .poll-outline .poll-holder .poll-interface .new-option .init-new-option, body .background .main-container .poll-outline .poll-holder .poll-interface .new-option .init-new-option {
-                color: brown;
-                cursor: pointer; }
-              html .background .main-container .poll-outline .poll-holder .poll-interface .new-option .new-option-form, body .background .main-container .poll-outline .poll-holder .poll-interface .new-option .new-option-form {
-                display: none; }
-            html .background .main-container .poll-outline .poll-holder .poll-interface .delete-button, body .background .main-container .poll-outline .poll-holder .poll-interface .delete-button {
-              display: flex;
-              margin-top: 2em;
-              align-self: center;
-              height: 3em;
-              width: 8em; }
-              html .background .main-container .poll-outline .poll-holder .poll-interface .delete-button a, body .background .main-container .poll-outline .poll-holder .poll-interface .delete-button a {
-                background-color: brown;
-                color: #fff;
-                text-decoration: none;
-                height: 100%;
-                width: 100%;
+            html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent {
+              margin-left: 1rem;
+              margin-top: 0.5rem; }
+              html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form {
                 display: flex;
-                justify-content: center;
-                align-items: center; }
+                flex-direction: column; }
+                html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .option, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .option {
+                  margin-top: 1rem;
+                  font-size: 1.2rem; }
+                html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .init-new-option, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .init-new-option {
+                  color: #000;
+                  cursor: pointer;
+                  margin-top: 1rem;
+                  margin-left: 1.5rem;
+                  transition: color 250ms ease; }
+                html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .init-new-option:hover, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .init-new-option:hover {
+                  color: #222; }
+                html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .vote-button, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .vote-button {
+                  font-size: 1.2rem;
+                  border-radius: 2px;
+                  font-family: "Roboto";
+                  font-weight: 300;
+                  margin-top: 1.25rem;
+                  background-color: darkgreen;
+                  border: none;
+                  color: #fff;
+                  height: 2.5rem;
+                  width: 6rem;
+                  cursor: pointer;
+                  align-self: center;
+                  transition: background-color 250ms ease; }
+                html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .vote-button:hover, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent #vote-form .vote-button:hover {
+                  background-color: green; }
+              html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option {
+                margin-top: 1rem;
+                display: flex; }
+                html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form {
+                  display: none; }
+                  html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form input, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form input {
+                    height: 1.65rem;
+                    padding-left: 0.25rem; }
+                  html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .create-new, html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .cancel-new, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .create-new, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .cancel-new {
+                    height: 2rem;
+                    width: 6rem;
+                    border-radius: 2px;
+                    font-family: "Roboto";
+                    font-weight: 300;
+                    border: none;
+                    color: #fff;
+                    cursor: pointer; }
+                  html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .create-new, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .create-new {
+                    background-color: darkgreen;
+                    transition: background-color 250ms ease; }
+                  html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .create-new:hover, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .create-new:hover {
+                    background-color: green; }
+                  html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .cancel-new, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .cancel-new {
+                    background-color: #fff;
+                    border: 1px solid #333;
+                    color: #333;
+                    transition: background-color 250ms ease, color 250ms ease; }
+                  html .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .cancel-new:hover, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-indent .new-option .new-option-form .cancel-new:hover {
+                    background-color: #333;
+                    color: #fff; }
           html .background .main-container .poll-outline .poll-holder .poll-results, body .background .main-container .poll-outline .poll-holder .poll-results {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center; }
+            html .background .main-container .poll-outline .poll-holder .poll-results .delete-button, body .background .main-container .poll-outline .poll-holder .poll-results .delete-button {
+              margin-top: 1rem;
+              display: flex;
+              align-self: center;
+              height: 3rem;
+              width: 8rem;
+              order: 5; }
+              html .background .main-container .poll-outline .poll-holder .poll-results .delete-button a, body .background .main-container .poll-outline .poll-holder .poll-results .delete-button a {
+                background-color: #fff;
+                color: brown;
+                border: 1px solid brown;
+                border-radius: 2px;
+                text-decoration: none;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                transition: color 250ms ease, background-color 250ms ease; }
+              html .background .main-container .poll-outline .poll-holder .poll-results .delete-button a:hover, body .background .main-container .poll-outline .poll-holder .poll-results .delete-button a:hover {
+                background-color: brown;
+                color: #fff; }
             html .background .main-container .poll-outline .poll-holder .poll-results .text-results, body .background .main-container .poll-outline .poll-holder .poll-results .text-results {
-              margin-top: 0.5em; }
+              margin-top: 0.5rem;
+              display: flex;
+              flex-wrap: wrap;
+              max-width: 400px; }
 
 /*# sourceMappingURL=poll.css.map */
