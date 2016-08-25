@@ -206,7 +206,7 @@ html, body {
       html .background .main-container .poll-outline, body .background .main-container .poll-outline {
         display: flex;
         justify-content: center;
-        width: 70%;
+        width: 80%;
         background-color: #fff;
         padding-top: 2em;
         padding-bottom: 2em;
@@ -214,10 +214,15 @@ html, body {
         box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4); }
         html .background .main-container .poll-outline .poll-holder, body .background .main-container .poll-outline .poll-holder {
           display: flex;
+          flex-direction: column;
+          align-items: center;
           justify-content: space-between;
           width: 85%; }
+@media(min-width: 1200px) {
+  html .background .main-container .poll-outline .poll-holder, body .background .main-container .poll-outline .poll-holder {
+    flex-direction: row; } }
           html .background .main-container .poll-outline .poll-holder .poll-interface, body .background .main-container .poll-outline .poll-holder .poll-interface {
-            max-width: 50%;
+            max-width: 65%;
             display: flex;
             flex-direction: column; }
             html .background .main-container .poll-outline .poll-holder .poll-interface .poll-title, body .background .main-container .poll-outline .poll-holder .poll-interface .poll-title {
@@ -291,7 +296,11 @@ html, body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; }
+            justify-content: center;
+            margin-top: 3rem; }
+@media(min-width: 1200px) {
+  html .background .main-container .poll-outline .poll-holder .poll-results, body .background .main-container .poll-outline .poll-holder .poll-results {
+    margin-top: 0; } }
             html .background .main-container .poll-outline .poll-holder .poll-results .delete-button, body .background .main-container .poll-outline .poll-holder .poll-results .delete-button {
               margin-top: 1rem;
               display: flex;

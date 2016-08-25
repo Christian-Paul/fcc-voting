@@ -203,7 +203,7 @@ html, body {
       margin-top: 8rem; }
       html .background .main-container .form-outline, body .background .main-container .form-outline {
         height: 100%;
-        width: 36%;
+        width: 80%;
         max-width: 575px;
         background-color: #fff;
         display: flex;
